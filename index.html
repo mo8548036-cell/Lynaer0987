@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-visual">
 <meta name="theme-color" content="#070a22">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>IMPOSTOR ARENA — Guerra na estação espacial</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap">
@@ -2826,6 +2830,71 @@ body.iax-ingame .net-panel{display:none!important} /* o seletor do Launcher não
 })();
 </script>
 <!-- IAX: extensão RPG Battle Royale Premium (itens, armas, modos, mapas, layout vertical) -->
+<style id="iax-v4-css">
+/* ===================== IAX v4: heróis, Modo Impostor, marcações, tutorial ===================== */
+.ia-cust.ia-tut{--kf:#0e7490;--kh:#22d3ee}
+.ia-tut.is-new{animation:iax4-glow 1.5s ease-in-out infinite}
+@keyframes iax4-glow{50%{box-shadow:0 0 0 3px rgba(34,211,238,.4),0 0 24px rgba(34,211,238,.7)}}
+.iax4-ult,.iax4-ping,.iax4-imp{position:absolute;display:grid;place-items:center;border-radius:50%;color:#fff;font-weight:800;touch-action:none;user-select:none;-webkit-user-select:none;padding:0}
+.iax4-ult{right:calc(186px * var(--hs,1));bottom:calc(206px * var(--hs,1));width:calc(60px * var(--hs,1));height:calc(60px * var(--hs,1));background:radial-gradient(circle at 50% 28%,rgba(255,255,255,.55),transparent 58%),var(--hc,#64748b);border:3px solid #0a0f1f;box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 4px 0 #0a0f1f}
+.iax4-ult::after{content:"";position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(rgba(5,8,18,.78) var(--cd,360deg),transparent 0);pointer-events:none}
+.iax4-ult.is-ready{animation:iax4-ready 1s ease-in-out infinite}
+@keyframes iax4-ready{50%{box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 4px 0 #0a0f1f,0 0 22px 4px var(--hc,#fff)}}
+.iax4-ult b,.iax4-imp b{position:relative;z-index:1;font-size:calc(22px * var(--hs,1));line-height:1;text-shadow:0 2px 0 rgba(0,0,0,.45)}
+.iax4-ult .iax-cap,.iax4-imp .iax-cap{position:absolute;z-index:2;left:50%;bottom:calc(-7px * var(--hs,1));transform:translateX(-50%);padding:1px 6px;border-radius:999px;background:#0a0f1f;color:#fff;font-size:calc(9.5px * var(--hs,1));letter-spacing:.06em;white-space:nowrap}
+.iax4-ping{right:calc(112px * var(--hs,1));bottom:calc(214px * var(--hs,1));width:calc(46px * var(--hs,1));height:calc(46px * var(--hs,1));background:linear-gradient(#334155,#1e293b);border:3px solid #0a0f1f;box-shadow:inset 0 2px 0 rgba(255,255,255,.25),0 3px 0 #0a0f1f;font-size:calc(20px * var(--hs,1))}
+.iax4-imp{width:calc(54px * var(--hs,1));height:calc(54px * var(--hs,1));border:3px solid #0a0f1f;box-shadow:inset 0 2px 0 rgba(255,255,255,.3),0 4px 0 #0a0f1f}
+.iax4-imp.is-hidden{display:none}
+.iax4-imp em{position:absolute;inset:0;z-index:1;display:grid;place-items:center;border-radius:50%;background:rgba(5,8,18,.72);font-style:normal;font-size:calc(14px * var(--hs,1));opacity:0}
+.iax4-imp.is-cd em{opacity:1}
+.iax4-meet,.iax4-stab{right:calc(256px * var(--hs,1));bottom:calc(206px * var(--hs,1))}
+.iax4-meet{background:linear-gradient(#ef4444,#991b1b)}
+.iax4-stab{background:linear-gradient(#f43f5e,#881337)}
+.iax4-sab{right:calc(256px * var(--hs,1));bottom:calc(136px * var(--hs,1));background:linear-gradient(#f59e0b,#92400e)}
+.iax4-wheel{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:270px;z-index:60;display:flex;flex-direction:column;gap:6px;padding:8px;border-radius:16px;background:rgba(7,10,34,.94);border:2px solid #334155;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.iax4-wheel button{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;border:2px solid var(--pc,#475569);background:#0f172a;color:#fff;font:700 14px Fredoka,system-ui,sans-serif;text-align:left}
+.iax4-wheel button i{font-style:normal;font-size:18px}
+.iax4-emos{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+.iax4-emos button{justify-content:center;padding:6px 0;font-size:17px}
+.iax4-vote .iax-sheet{max-width:520px}
+.iax4-vote header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.iax4-timer{min-width:46px;padding:4px 10px;border-radius:999px;background:#ef4444;color:#fff;font-size:16px;text-align:center}
+.iax4-cands{display:grid;gap:8px;margin:10px 0}
+.iax4-cand{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:14px;border:2px solid #334155;background:#0f172a;color:#e2e8f0;text-align:left;font:inherit;cursor:pointer}
+.iax4-cand:not(:disabled):hover,.iax4-cand.on{border-color:#38bdf8;background:#0c2440}
+.iax4-cand:disabled{cursor:default}
+.iax4-cand i{flex:none;width:30px;height:32px;border-radius:15px 15px 9px 9px;border:3px solid #0a0f1f;box-shadow:inset -6px -4px 0 rgba(0,0,0,.25)}
+.iax4-cand span{display:flex;flex-direction:column;flex:1;min-width:0}
+.iax4-cand b{font-size:15px}
+.iax4-cand small{font-weight:600;color:#94a3b8;font-size:11px}
+.iax4-cand em{font-style:normal;font-size:12px;color:#fbbf24;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.iax4-cand strong{font-size:15px;color:#fde047;white-space:nowrap}
+.iax4-cand.is-out{border-color:#ef4444;background:#3b0d0d}
+.iax4-tally{text-align:center;color:#94a3b8;margin:6px 0 0}
+.iax4-eject{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:radial-gradient(circle at 30% 20%,#1e1b4b,#02030a 70%);color:#fff;font-family:Fredoka,system-ui,sans-serif;text-align:center;overflow:hidden;padding:20px}
+.iax4-eject::before{content:"";position:absolute;inset:0;background-image:radial-gradient(2px 2px at 20% 30%,#fff,transparent),radial-gradient(1.5px 1.5px at 70% 60%,#fff,transparent),radial-gradient(1px 1px at 40% 80%,#fff,transparent),radial-gradient(1.5px 1.5px at 85% 20%,#fff,transparent),radial-gradient(1px 1px at 10% 70%,#fff,transparent);opacity:.8}
+.iax4-eject h2{position:relative;font-size:clamp(22px,5vw,38px);margin:0}
+.iax4-eject p{position:relative;font-size:clamp(15px,3.2vw,22px);color:#fca5a5;margin:0}
+.iax4-astro{position:absolute;top:30%;left:-90px;width:56px;height:70px;border-radius:28px 28px 16px 16px;background:var(--c);border:4px solid #0a0f1f;animation:iax4-float 2.6s linear forwards}
+.iax4-astro::before{content:"";position:absolute;top:12px;right:-8px;width:32px;height:18px;border-radius:10px;background:#a5f3fc;border:3px solid #0a0f1f}
+@keyframes iax4-float{to{left:calc(100% + 90px);transform:rotate(540deg)}}
+.iax4-tut{position:fixed;left:50%;top:max(110px,23vh);transform:translateX(-50%);z-index:55;width:min(92vw,440px);padding:10px 44px 12px;border-radius:16px;background:rgba(7,10,34,.92);border:2px solid #22d3ee;box-shadow:0 8px 28px rgba(0,0,0,.45);color:#fff;font-family:Fredoka,system-ui,sans-serif;text-align:center}
+.iax4-tut small{display:block;color:#67e8f9;font-weight:700;letter-spacing:.08em;font-size:11px}
+.iax4-tut b{display:block;font-size:17px;margin:2px 0 6px}
+.iax4-tut i{display:flex;justify-content:center;gap:6px}
+.iax4-tut u{width:22px;height:5px;border-radius:3px;background:#334155;text-decoration:none}
+.iax4-tut u.ok{background:#22c55e}
+.iax4-tut u.on{background:#22d3ee}
+.iax4-tut button{position:absolute;top:8px;right:8px;border:0;background:none;color:#94a3b8;font:600 12px Fredoka,system-ui,sans-serif;text-decoration:underline;cursor:pointer}
+.iax4-heroes .iax4-hero{position:relative;padding-top:38px}
+.iax4-hero i{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--hc);color:#0a0f1f;font-style:normal;font-weight:800;border:2px solid #0a0f1f}
+.iax4-hero em{display:block;font-style:normal;font-size:10.5px;color:#cbd5e1;margin-top:2px}
+.iax4-hero.is-locked{opacity:.75}
+.iax4-hero.is-locked i{filter:grayscale(.8)}
+.iax4-hdesc{margin:6px 0 2px;padding:8px 10px;border-radius:12px;background:rgba(15,23,42,.8);border-left:4px solid var(--hc);font-size:12.5px;color:#cbd5e1}
+.iax4-hdesc b{color:var(--hc);margin-right:4px}
+.iax4-wa{background:linear-gradient(#22c55e,#15803d)!important}
+</style>
 <script id="iax-core">
 (function () {
 "use strict";
@@ -2844,8 +2913,11 @@ body.iax-ingame .net-panel{display:none!important} /* o seletor do Launcher não
      pets, clima, mapas que mudam a cada partida, mapa interativo e o Diretor de IA do Treino.
    A camada de rede original (Socket.IO / salas / GA16 / voice.js) não é alterada: os
    itens novos viajam pelos eventos que já existem (pk_add / pk_take / fire / bomb).
+v4 ("Nível Extremo"): heróis com ULTI, Modo Impostor (traidor, sabotagem, votação), luz e
+escuridão, eventos ao vivo, chefão cooperativo, marcações/emotes/espectador, som espacial +
+narrador, app instalável + modo leve e tutorial jogável.
    ===================================================================================== */
-var IAX = (window.IAX = { version: '3.0.0' });
+var IAX = (window.IAX = { version: '4.0.0' });
 // nº máximo de jogadores numa arena: 12 hoje; o código usa sempre este valor (preparado para 20-30)
 IAX.MAX_PLAYERS = 12;
 
@@ -2884,6 +2956,8 @@ var FORMATS = {
   '2v2': { label: '2 v 2', sub: 'Duplas', bots: 3, team: 2 },
   '3v3': { label: '3 v 3', sub: 'Esquadrão', bots: 5, team: 3 },
   '4v4': { label: '4 v 4', sub: '♥ 2 casais por equipa', bots: 7, team: 4, couples: true },
+  imp: { label: 'IMPOSTOR', sub: '🔪 Traidor secreto + votação', bots: 7, team: 4 },
+  boss: { label: 'CHEFÃO', sub: '👹 Equipe vs titã gigante', bots: 4, team: 4 },
   ffa: { label: 'TODOS', sub: 'Battle Royale', bots: 0, team: 0 },
 };
 function loadCfg() {
@@ -2892,7 +2966,7 @@ function loadCfg() {
   var o = {
     format: FORMATS[c.format] ? c.format : CFG_DEF.format, bots: clamp(c.bots | 0 || CFG_DEF.bots, 1, IAX.MAX_PLAYERS - 1),
     couples: clamp(c.couples | 0 || CFG_DEF.couples, 2, Math.floor(IAX.MAX_PLAYERS / 2)),
-    diff: c.diff === 'hard' ? 'hard' : 'normal', kit: !!c.kit, // não há CPU fácil: só média (mista) ou máxima
+    diff: c.diff === 'hard' ? 'hard' : 'normal', kit: !!c.kit, impRole: c.impRole === 'imp' || c.impRole === 'crew' ? c.impRole : 'rand', // não há CPU fácil: só média (mista) ou máxima
   };
   return o;
 }
@@ -3414,6 +3488,7 @@ function checkWin(eng, now) {
   // conta a equipa real (um inimigo hipnotizado continua a ser inimigo) e quem espera revive
   for (var i = 0; i < eng.fighters.length; i++) { var f = eng.fighters[i]; if (realEnemy(p, f) && inGame(f)) return; }
   // Treino: nunca há "vitória" — a onda cai e vem outra mais forte
+  if (X.v4 && X.v4.imp && impHold(eng, now)) return;
   if (X.dir) { waveCleared(eng, now); return; }
   eng.victory = true; eng.placement = 1; eng.endAt = now + 1700;
   for (var s = 0; s < 40; s++) {
@@ -3998,6 +4073,7 @@ function endTank(eng, f, now) {
 
 // ---------- ações vindas da rede (canal: evento "bomb" com n >= 100)
 function netAction(eng, f, code, pos, now) {
+  if (code >= NET_V4) { v4Net(eng, f, code - NET_V4, pos, now); return; }
   var X = eng.iax, tg;
   if (code === NET_WALL_V || code === NET_WALL_H) { if (pos) buildWall(eng, f, now, { x: pos.x, y: pos.y, vertical: code === NET_WALL_V }); return; }
   if (code >= NET_MIND && code < NET_MIND + 30) { tg = byOrder(eng, code - NET_MIND); if (tg) activatePower(eng, f, 'mind', now, { x: f.x, y: f.y, target: tg }); return; }
@@ -4045,6 +4121,7 @@ function buildWall(eng, f, now, net) {
   return true;
 }
 function removeWall(eng, w, broken) {
+  if (w.crate && broken) crateLoot(eng, w);
   var i = B.obstacles.indexOf(w.ob);
   if (i >= 0) B.obstacles.splice(i, 1);
   i = eng.occluders.indexOf(w.occ);
@@ -4442,6 +4519,7 @@ function vignetteSprite() {
 
 // ---------- parede
 function drawWall(ctx, w, now) {
+  if (w.crate) { drawCrate(ctx, w, now); return; }
   var ob = w.ob, age = now - w.born, left = w.until - now, lift = 13;
   var grow = 1 - Math.pow(1 - clamp(age / 170, 0, 1), 3), sc = lerp(0.35, 1, grow);
   ctx.save();
@@ -4698,6 +4776,7 @@ function installRender() {
     else {
       if (giant) sc = 1 + 0.55 * clamp(Math.min((POWERS.giant.dur - (t.giantUntil - now)) / 260, (t.giantUntil - now) / 260), 0, 1);
       else if (now < t.shrinkUntil) sc = 1 - 0.38 * clamp(Math.min((POWERS.shrink.dur - (t.shrinkUntil - now)) / 220, (t.shrinkUntil - now) / 220), 0, 1);
+      if (t.v4boss) sc = t.v4boss.sc;
       var wid = WEAPONS[t.weapon] ? t.weapon : 'pistol', aim = t.aim, sw = now - t.swingAt, dur = t.swingDur || 200, lift = now < t.motoUntil ? 10 : 0;
       swinging = sw >= 0 && sw < dur;
       // durante o golpe o braço varre um arco com a faca/bastão (ou só o punho) em vez da arma de fogo
@@ -4720,7 +4799,7 @@ function installRender() {
   P.drawTag = function (t, anim) {
     var now = this.time, X = this.iax, ctx = this.ctx;
     if (t !== this.player && hidden(this, t, this.player)) return;
-    var off = now < t.tankUntil ? 10 : now < t.giantUntil ? 32 : now < t.motoUntil ? 10 : 0, y0 = t.y;
+    var off = t.v4boss ? 36 : now < t.tankUntil ? 10 : now < t.giantUntil ? 32 : now < t.motoUntil ? 10 : 0, y0 = t.y;
     if (off) t.y -= off;
     try { o.drawTag.call(this, t, anim); } finally { t.y = y0; }
     var lv = t.isClone ? t.showLives : t.lives;
@@ -5031,7 +5110,7 @@ IAX.ui.menu = function (R) {
       }),
       R.jsxs('button', {
         type: 'button', className: 'ia-key ia-cust', onClick: function () { IAX.openCustomize(); },
-        children: [R.jsx('span', { className: 'iax-coin-ico', 'aria-hidden': 'true' }), 'Skins & Pets'],
+        children: [R.jsx('span', { className: 'iax-coin-ico', 'aria-hidden': 'true' }), 'Heróis, Skins & Pets'],
       }),
     ],
   });
@@ -5153,13 +5232,13 @@ function loadWallet() {
   return {
     coins: typeof w.coins === 'number' ? Math.max(0, w.coins | 0) : 200, // bónus de boas-vindas: dá logo para a skin Neon
     owned: own, skin: SKINS[w.skin] && own[w.skin] ? w.skin : 'default', pet: PETS[w.pet] ? w.pet : 'auto',
-    best: { wave: best.wave | 0, time: best.time | 0, kills: best.kills | 0 }, kills: w.kills | 0, matches: w.matches | 0,
+    best: { wave: best.wave | 0, time: best.time | 0, kills: best.kills | 0 }, kills: w.kills | 0, matches: w.matches | 0, v4: w.v4 && typeof w.v4 === 'object' ? w.v4 : {},
   };
 }
 IAX.wallet = loadWallet();
 IAX.saveWallet = function () { try { localStorage.setItem(WALLET_KEY, JSON.stringify(IAX.wallet)); } catch (e) {} };
 function saveWalletSoon() { clearTimeout(saveWalletSoon.h); saveWalletSoon.h = setTimeout(IAX.saveWallet, 700); }
-function sfx(eng, k, x, y, d) { if (x !== undefined && !near(eng, x, y, d || 1000)) return; if (eng.audio.iaxSfx) eng.audio.iaxSfx(k); }
+function sfx(eng, k, x, y, d) { if (x !== undefined && !near(eng, x, y, d || 1000)) return; if (eng.audio.iaxSfx) { SFX_POS = x !== undefined ? { x: x, y: y } : null; try { eng.audio.iaxSfx(k); } finally { SFX_POS = null; } } }
 function addCoins(eng, n, x, y, why) {
   n = Math.round(n);
   if (!n) return;
@@ -6922,6 +7001,7 @@ IAX.openTraining = function () {
       '<h3>Modo</h3><div class="iax-grid3">' +
       Object.keys(FORMATS).map(function (k) { return '<button type="button" data-f="' + k + '" class="iax-opt' + (FORMATS[k].couples ? ' is-love' : '') + (cfg.format === k ? ' on' : '') + '"><b>' + esc(FORMATS[k].label) + '</b><small>' + esc(FORMATS[k].sub) + '</small></button>'; }).join('') +
       '</div>' +
+      v4TrainHtml(cfg) +
       (couples ? '<h3>Casais na arena</h3><div class="iax-step"><button type="button" data-c="-1" aria-label="Menos casais">−</button><b>' + cfg.couples + '</b><button type="button" data-c="1" aria-label="Mais casais">+</button><span>' + total + ' jogadores · tu + o teu par contra ' + (cfg.couples - 1) + (cfg.couples - 1 === 1 ? ' casal' : ' casais') + '</span></div>' : '') +
       (!f.bots && !couples ? '<h3>CPU na arena</h3><div class="iax-step"><button type="button" data-b="-1" aria-label="Menos bots">−</button><b>' + cfg.bots + '</b><button type="button" data-b="1" aria-label="Mais bots">+</button><span>' + total + ' jogadores na arena</span></div>' : '') +
       '<h3>CPU</h3><div class="iax-grid2">' +
@@ -6940,7 +7020,9 @@ IAX.openTraining = function () {
     var d = b.dataset;
     if (d.a === 'close') { close(); return; }
     if (d.a === 'go') { IAX.saveCfg(); close(); N.m.play(); return; }
-    if (d.f) cfg.format = d.f;
+    if (d.h) heroClick(d.h);
+    else if (d.r) cfg.impRole = d.r;
+    else if (d.f) cfg.format = d.f;
     else if (d.b) cfg.bots = clamp(cfg.bots + (+d.b), 1, MAXB);
     else if (d.c) cfg.couples = clamp(cfg.couples + (+d.c), 2, MAXC);
     else if (d.d) cfg.diff = d.d;
@@ -6959,7 +7041,7 @@ IAX.openCustomize = function () {
   var draw = function () {
     root.innerHTML =
       '<div class="iax-sheet" role="dialog" aria-label="Skins e pets">' +
-      '<header><h2>SKINS &amp; PETS</h2><span class="iax-wallet">' + coinsHtml(w.coins) + '</span><button type="button" class="iax-x" data-a="close" aria-label="Fechar">✕</button></header>' +
+      '<header><h2>HERÓIS, SKINS &amp; PETS</h2><span class="iax-wallet">' + coinsHtml(w.coins) + '</span><button type="button" class="iax-x" data-a="close" aria-label="Fechar">✕</button></header>' +
       '<p class="iax-sub">Ganha moedas a abater, a cobrar recompensas, a reviver amigos e a superar ondas.</p>' +
       '<h3>Skin da arma</h3><div class="iax-grid4">' +
       Object.keys(SKINS).map(function (k) {
@@ -6968,7 +7050,7 @@ IAX.openCustomize = function () {
       }).join('') +
       '</div><h3>Pet de combate</h3><div class="iax-grid3">' +
       Object.keys(PETS).map(function (k) { return '<button type="button" data-p="' + k + '" class="iax-opt' + (w.pet === k ? ' on' : '') + '"><b>' + esc(PETS[k]) + '</b><small>' + esc(PET_DESC[k]) + '</small></button>'; }).join('') +
-      '</div><button type="button" class="iax-go" data-a="close">FEITO</button></div>';
+      '</div>' + v4CustHtml() + '<button type="button" class="iax-go" data-a="close">FEITO</button></div>';
   };
   var close = function () { if (root.parentNode) root.parentNode.removeChild(root); };
   root.addEventListener('click', function (e) {
@@ -6977,6 +7059,7 @@ IAX.openCustomize = function () {
     if (!b) return;
     var d = b.dataset;
     if (d.a === 'close') { close(); return; }
+    if (d.h || d.g || d.n || d.x) { if (v4CustClick(d)) close(); else draw(); return; }
     if (d.s) {
       var S = SKINS[d.s];
       if (!w.owned[d.s]) {
@@ -7150,6 +7233,1526 @@ function installView() {
   };
 }
 
+// =====================================================================================
+// v4 — "NÍVEL EXTREMO"
+// Modo Impostor (traidor secreto, sabotagem, votação), heróis com ULTI, luz e escuridão,
+// eventos ao vivo (airdrop, meteoros, gravidade zero, caixotes, apagão), chefão cooperativo,
+// marcações/emotes/espectador, som espacial + narrador, app instalável + modo leve,
+// tutorial jogável e convite. O que precisaria de um árbitro (servidor) roda no Treino
+// offline; em rede só viajam marcações e emotes (evento "bomb", códigos 240+).
+// =====================================================================================
+var NET_V4 = 240;          // 240..243 marcações · 250..255 emotes
+var DORMANT = 1e15;        // respawnAt "nunca": conta como "em jogo" mas não renasce sozinho
+var SFX_POS = null;        // posição do som em curso (pan estéreo)
+var V4NEXT = null;         // modo pedido para a próxima partida (tutorial)
+var CFG_BAK = null;        // configuração do Treino guardada enquanto corre o tutorial
+var APP = { prompt: null, ios: false };
+
+var HEROES = {
+  vita: { name: 'VITA', role: 'Médica', color: '#4ade80', ult: 'heal', mp: 'droneShield', cd: 40000, price: 0, pas: 'Regenera vida fora de combate', ultTxt: 'Pulso de cura na equipe' },
+  rocha: { name: 'ROCHA', role: 'Tanque', color: '#facc15', ult: 'shield', cd: 55000, price: 0, pas: '+25% de vida, um pouco mais lento', ultTxt: 'Escudo de força' },
+  mira: { name: 'MIRA', role: 'Atiradora', color: '#f43f5e', ult: 'rage', cd: 45000, price: 0, pas: '+12% de dano', ultTxt: 'Fúria: dano x1,5' },
+  sombra: { name: 'SOMBRA', role: 'Fantasma', color: '#cbd5e1', ult: 'invis', cd: 45000, price: 400, pas: '+10% de velocidade', ultTxt: 'Invisível por 7 s' },
+  kaze: { name: 'KAZE', role: 'Ninja', color: '#2dd4bf', ult: 'teleport', cd: 22000, price: 400, pas: 'Começa com faca', ultTxt: 'Teleporte relâmpago' },
+  bolt: { name: 'BOLT', role: 'Engenheiro', color: '#fb923c', ult: 'droneGun', cd: 50000, price: 500, pas: 'Paredes recarregam sozinhas', ultTxt: 'Drone metralhadora' },
+  faro: { name: 'FARO', role: 'Caçador', color: '#a3e635', ult: 'droneSniper', cd: 50000, price: 500, pas: 'Enxerga 15% mais longe', ultTxt: 'Drone sniper' },
+  arcano: { name: 'ARCANO', role: 'Feiticeiro', color: '#c084fc', ult: 'meteor', cd: 35000, price: 600, pas: 'Começa com um feitiço', ultTxt: 'Meteoro no inimigo' },
+};
+var HERO_IDS = Object.keys(HEROES);
+var PINGS = [
+  { icon: '🎯', txt: 'Inimigo aqui!', col: '#fb7185' },
+  { icon: '🆘', txt: 'Preciso de ajuda!', col: '#fbbf24' },
+  { icon: '📦', txt: 'Item aqui!', col: '#38bdf8' },
+  { icon: '➡️', txt: 'Vamos!', col: '#4ade80' },
+];
+var EMOTES = ['😂', '😎', '👍', '😡', '🔥', 'GG'];
+var SAB_KINDS = ['blackout', 'doors', 'poison'];
+var SAB_TXT = { blackout: 'APAGÃO', doors: 'PORTAS', poison: 'VENENO' };
+
+function W4() {
+  var w = IAX.wallet;
+  if (!w.v4 || typeof w.v4 !== 'object') w.v4 = {};
+  var v = w.v4;
+  if (!v.heroes || typeof v.heroes !== 'object') v.heroes = {};
+  HERO_IDS.forEach(function (k) { if (!HEROES[k].price) v.heroes[k] = 1; });
+  if (!HEROES[v.hero] || !v.heroes[v.hero]) v.hero = 'vita';
+  if (v.narr === undefined) v.narr = true;
+  if (v.gfx !== 'high' && v.gfx !== 'lite') v.gfx = 'auto';
+  return v;
+}
+function heroOf(f) { return (f && HEROES[f.v4hero]) || null; }
+function teamList(eng, team) { return eng.fighters.filter(function (f) { return !f.isClone && teamOf(f) === team; }); }
+function nearestEnemy(eng, f, r) {
+  var best = null, bd = r || 1e9;
+  for (var i = 0; i < eng.fighters.length; i++) {
+    var g = eng.fighters[i];
+    if (!g.alive || g.isClone || !IAX.isEnemy(f, g) || hidden(eng, g, f)) continue;
+    var d = dist(f.x, f.y, g.x, g.y);
+    if (d < bd) { bd = d; best = g; }
+  }
+  return best;
+}
+function toScreen(eng, x, y) { var z = eng.viewZoom; return { x: eng.vw / 2 + (x - eng.camX) * z, y: eng.vh / 2 + (y - eng.camY) * z }; }
+
+// ---------- heróis: passiva + ULTI (as ULTIs reutilizam poderes que já viajam pela rede)
+function applyHero(eng, f, first) {
+  var H = heroOf(f), mp = eng.iax.mp;
+  if (!H || f.isClone) return;
+  if (f.v4hero === 'sombra') f.spdK = 1.1;
+  else if (f.v4hero === 'rocha') f.spdK = 0.93;
+  if (!first) return;
+  if (!f.v4pas) { // bónus de atributos só uma vez por lutador (as ondas não os acumulam)
+    f.v4pas = true;
+    if (f.v4hero === 'rocha' && !mp) { if (f.baseHp) f.baseHp *= 1.25; f.maxHp = Math.round(f.maxHp * 1.25); f.hp = f.maxHp; }
+    else if (f.v4hero === 'mira') { f.dmgMul *= 1.12; if (f.baseDmg) f.baseDmg *= 1.12; }
+  }
+  if (f.v4hero === 'kaze' && MELEE.knife) f.melee = 'knife';
+  else if (f.v4hero === 'arcano' && !f.item) f.item = ['meteor', 'blackhole', 'curse', 'mind'][(Math.random() * 4) | 0];
+  else if (f.v4hero === 'bolt') f.wall = WALL.max;
+}
+function healPulse(eng, f, now) {
+  var n = 0;
+  eng.fighters.forEach(function (g) {
+    if (!g.alive || g.isClone || IAX.isEnemy(f, g) || dist(f.x, f.y, g.x, g.y) > 300) return;
+    var add = g.maxHp * 0.35;
+    g.hp = Math.min(g.maxHp, g.hp + add); n++;
+    eng.floats.push({ x: g.x, y: g.y - 50, txt: '+' + IAX.hpDisp(add), color: '#4ade80', t: now });
+  });
+  eng.ring(f.x, f.y, '#4ade80', 300); eng.ring(f.x, f.y, '#bbf7d0', 150);
+  for (var i = 0; i < 30; i++) {
+    var a = rnd(0, TAU), r = rnd(20, 280);
+    eng.particles.push({ x: f.x + Math.cos(a) * r, y: f.y + Math.sin(a) * r, vx: 0, vy: rnd(-140, -40), life: rnd(0.5, 1), maxLife: 1, size: rnd(2, 4), color: i % 2 ? '#4ade80' : '#dcfce7', kind: 'spark' });
+  }
+  sfx(eng, 'healPulse', f.x, f.y, 1100);
+  return n > 0;
+}
+function castUlt(eng, f, now) {
+  var X = eng.iax, H = heroOf(f);
+  if (!H || !f.alive || now < (f.v4cdUntil || 0) || now < (f.frozenUntil || 0)) { if (f.isPlayer && eng.audio.iaxDenied) eng.audio.iaxDenied(); return false; }
+  var ok = H.ult === 'heal' && !X.mp ? healPulse(eng, f, now) : activatePower(eng, f, H.ult === 'heal' ? H.mp : H.ult, now, null) !== false;
+  if (!ok) { if (f.isPlayer && eng.audio.iaxDenied) eng.audio.iaxDenied(); return false; }
+  f.v4cdUntil = now + H.cd; f.v4ultAt = now;
+  if (f.isPlayer) {
+    X.v4.ultSaid = false;
+    sfx(eng, 'ultCast');
+    eng.floats.push({ x: f.x, y: f.y - 72, txt: 'ULTI · ' + H.ultTxt.toUpperCase(), color: H.color, t: now });
+  }
+  return true;
+}
+function botUlt(eng, f, now) {
+  if (!heroOf(f) || now < (f.v4cdUntil || 0) || now < (f.v4think || 0)) return;
+  f.v4think = now + 900 + Math.random() * 900;
+  var e = nearestEnemy(eng, f, 560), hp = f.hp / f.maxHp, k = f.v4hero, go;
+  if (!e) return;
+  if (k === 'vita') go = hp < 0.6;
+  else if (k === 'rocha') go = hp < 0.7;
+  else if (k === 'sombra') go = hp < 0.5;
+  else go = Math.random() < 0.45;
+  if (go) castUlt(eng, f, now);
+}
+function updateHeroes(eng, dt, now) {
+  var X = eng.iax, V = X.v4, p = eng.player, i;
+  if (X.dir && X.dir.wave !== V.wave) { V.wave = X.dir.wave; onWaveV4(eng, now); }
+  for (i = 0; i < eng.fighters.length; i++) {
+    var f = eng.fighters[i];
+    if (!f.alive || f.isClone || !f.v4hero) continue;
+    if (!X.mp && f.v4hero === 'vita' && now - (f.lastDamageAt || 0) > 3500 && f.hp < f.maxHp) f.hp = Math.min(f.maxHp, f.hp + f.maxHp * 0.03 * dt);
+    if (f.v4hero === 'bolt') {
+      if (f.wall >= WALL.max || !f.v4wallAt) f.v4wallAt = now + 16000;
+      else if (now >= f.v4wallAt) { f.wall++; f.v4wallAt = now + 16000; if (f.isPlayer) eng.floats.push({ x: f.x, y: f.y - 58, txt: '+1 PAREDE', color: '#bae6fd', t: now }); }
+    }
+    if (!X.mp && !f.isPlayer && !f.remote) botUlt(eng, f, now);
+  }
+  var H = heroOf(p);
+  if (H && p.alive && now >= (p.v4cdUntil || 0) && !V.ultSaid) { V.ultSaid = true; sfx(eng, 'ultReady'); eng.floats.push({ x: p.x, y: p.y - 66, txt: 'ULTI PRONTA', color: H.color, t: now }); }
+}
+
+// ---------- luz e escuridão: noite (sorteada; em rede pela semente) e apagões
+function blindBots(eng, team) {
+  eng.fighters.forEach(function (f) {
+    if (f.isPlayer || f.remote || f.isClone || f.v4blind || (team !== null && teamOf(f) !== team)) return;
+    f.v4blind = true; f.v4skill0 = f.skill; f.skill = (f.skill || 0.05) * 2.2; // pior pontaria no escuro
+  });
+}
+function updateLight(eng, dt, now) {
+  var V = eng.iax.v4, p = eng.player, tk = 1, ta = 0;
+  if (V.night) { tk = 1 - 0.26 * V.night; ta = 0.5 * V.night; }
+  if (now < V.blackoutUntil) { if (V.blackoutBy === p) { tk = 0.72; ta = 0.55; } else { tk = 0.42; ta = 0.86; } }
+  else if (V.blackoutUntil) {
+    V.blackoutUntil = 0; V.blackoutBy = null;
+    eng.fighters.forEach(function (f) { if (f.v4blind) { f.v4blind = false; if (f.v4skill0) f.skill = f.v4skill0; } });
+    sfx(eng, 'lightsOn');
+  }
+  if (p.v4hero === 'faro') tk *= 1.15;
+  var k = Math.min(1, dt * 2.2);
+  eng.visK = lerp(eng.visK || 1, tk, k);
+  V.dark = lerp(V.dark || 0, ta, k);
+  if (V.dark < 0.004) V.dark = 0;
+}
+var DK = null;
+function drawDarkV4(eng) {
+  var X = eng.iax, V = X && X.v4;
+  if (!V || V.dark < 0.02) return;
+  var vw = eng.vw, vh = eng.vh, z = eng.viewZoom, sc = IAX.lite ? 0.25 : 0.4, now = eng.time, i;
+  var w = Math.max(32, Math.round(vw * sc)), h = Math.max(32, Math.round(vh * sc));
+  if (!DK) { DK = mkCanvas(w, h); DK.c = DK.getContext('2d'); }
+  if (DK.width !== w || DK.height !== h) { DK.width = w; DK.height = h; }
+  var c = DK.c, k = sc * z;
+  var SX = function (x) { return (vw / 2 + (x - eng.camX) * z) * sc; }, SY = function (y) { return (vh / 2 + (y - eng.camY) * z) * sc; };
+  c.globalCompositeOperation = 'source-over'; c.clearRect(0, 0, w, h);
+  c.fillStyle = 'rgba(2,4,16,' + V.dark.toFixed(3) + ')'; c.fillRect(0, 0, w, h);
+  c.globalCompositeOperation = 'destination-out';
+  var hole = function (x, y, r, a) {
+    var sx = SX(x), sy = SY(y), rr = r * k;
+    if (a <= 0 || sx < -rr || sy < -rr || sx > w + rr || sy > h + rr) return;
+    var g = c.createRadialGradient(sx, sy, 0, sx, sy, rr);
+    g.addColorStop(0, 'rgba(0,0,0,' + a + ')'); g.addColorStop(1, 'rgba(0,0,0,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(sx, sy, rr, 0, TAU); c.fill();
+  };
+  var p = eng.player, view = !p.alive && V.specF ? V.specF : p, blk = now < V.blackoutUntil && V.blackoutBy !== p;
+  if (view && view.alive) {
+    hole(view.x, view.y, blk ? 120 : 170, 1);
+    var L = (blk ? 380 : 560) * k, a0 = view.aim || 0, sx = SX(view.x), sy = SY(view.y);
+    var g = c.createRadialGradient(sx, sy, 8 * k, sx, sy, L);
+    g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(0.7, 'rgba(0,0,0,0.85)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+    c.fillStyle = g; c.beginPath(); c.moveTo(sx, sy); c.arc(sx, sy, L, a0 - 0.46, a0 + 0.46); c.closePath(); c.fill();
+  }
+  for (i = 0; i < eng.fighters.length; i++) {
+    var f = eng.fighters[i];
+    if (!f.alive || f === view) continue;
+    if (now < (f.muzzleUntil || 0)) hole(f.x, f.y, 110, 0.9);
+    else if (!f.isClone && !IAX.isEnemy(p, f)) hole(f.x, f.y, 80, 0.7);
+    if (now < (f.burnUntil || 0)) hole(f.x, f.y, 90, 0.8);
+  }
+  var bl = eng.bullets || [], nB = Math.min(bl.length, IAX.lite ? 12 : 40);
+  for (i = 0; i < nB; i++) hole(bl[i].x, bl[i].y, 46, 0.8);
+  for (i = 0; i < X.blasts.length; i++) { var b = X.blasts[i]; hole(b.x, b.y, (b.r || 120) * 1.4, Math.max(0, 1 - (now - b.t) / 700)); }
+  for (i = 0; i < X.revives.length; i++) hole(X.revives[i].x, X.revives[i].y, 90, 0.8);
+  for (i = 0; i < eng.pickups.length; i++) if (eng.pickups[i].kind === 'power') hole(eng.pickups[i].x, eng.pickups[i].y, 54, 0.6);
+  if (V.drop && V.drop.landed && !V.drop.gone) hole(V.drop.x, V.drop.y, 150, 0.9);
+  if (V.boss && V.boss.f.alive) hole(V.boss.f.x, V.boss.f.y, 130, 0.8);
+  if (X.flash > 0.01) { c.fillStyle = 'rgba(0,0,0,' + Math.min(1, X.flash * 1.6).toFixed(3) + ')'; c.fillRect(0, 0, w, h); }
+  c.globalCompositeOperation = 'source-over';
+  var ctx = eng.ctx;
+  ctx.save(); ctx.imageSmoothingEnabled = true; ctx.drawImage(DK, 0, 0, vw, vh); ctx.restore();
+}
+
+// ---------- espectador: caído/à espera de renascer, a câmara segue um colega vivo
+function updateSpec(eng, now) {
+  var X = eng.iax, V = X.v4, p = eng.player;
+  var waiting = !p.alive && X.teamMode && !eng.endAt && (p.down || (p.respawnAt && p.respawnAt > now));
+  if (!waiting) { if (V.specF) { V.specF = null; eng.specX = eng.specY = null; } return; }
+  if (!V.specF || !V.specF.alive || V.specF.isClone || IAX.isEnemy(p, V.specF)) {
+    var best = null, bd = 1e9;
+    eng.fighters.forEach(function (f) { if (f === p || !f.alive || f.isClone || IAX.isEnemy(p, f)) return; var d = dist(f.x, f.y, p.x, p.y); if (d < bd) { bd = d; best = f; } });
+    V.specF = best;
+  }
+  if (V.specF) { eng.specX = V.specF.x; eng.specY = V.specF.y; } else eng.specX = eng.specY = null;
+}
+
+// ---------- marcações (pings) e emotes
+function pingSpot(eng, f, kind) {
+  var i, best = null, bd;
+  var ahead = { x: f.x + Math.cos(f.aim || 0) * 420, y: f.y + Math.sin(f.aim || 0) * 420 };
+  if (kind === 0) { var e = nearestEnemy(eng, f, 1100); if (e && (!f.isPlayer || eng.fighterVisible(e))) return { x: e.x, y: e.y }; return ahead; }
+  if (kind === 1) return { x: f.x, y: f.y };
+  if (kind === 2) {
+    bd = 900;
+    for (i = 0; i < eng.pickups.length; i++) { var q = eng.pickups[i], d = dist(f.x, f.y, q.x, q.y); if (d < bd) { bd = d; best = q; } }
+    return best ? { x: best.x, y: best.y } : ahead;
+  }
+  return ahead;
+}
+function addPing(eng, f, kind, x, y, fromNet) {
+  var V = eng.iax.v4, now = eng.time, P0 = PINGS[kind];
+  if (!P0 || !V) return;
+  for (var i = V.pings.length - 1; i >= 0; i--) if (V.pings[i].by === f) V.pings.splice(i, 1); // um ping por pessoa
+  V.pings.push({ x: x, y: y, k: kind, by: f, t: now, until: now + 6500 });
+  if (V.pings.length > 8) V.pings.shift();
+  V.feed.push({ txt: (f.isPlayer ? 'Você' : f.name) + ': ' + P0.txt, col: P0.col, t: now });
+  if (V.feed.length > 3) V.feed.shift();
+  sfx(eng, 'ping');
+  if (f.isPlayer && V.tut) V.tut.pinged = true;
+  if (f.isPlayer && eng.iax.mp && !fromNet) netObj().bomb(f, NET_V4 + kind, { x: Math.round(x), y: Math.round(y) });
+}
+function doEmote(eng, f, idx, fromNet) {
+  if (!EMOTES[idx] || !f) return;
+  f.v4emote = { e: EMOTES[idx], t: eng.time };
+  sfx(eng, 'emote', f.x, f.y, 900);
+  if (f.isPlayer && eng.iax.mp && !fromNet) netObj().bomb(f, NET_V4 + 10 + idx, { x: Math.round(f.x), y: Math.round(f.y) });
+}
+// chega da rede (bomb n>=240): marcações só da própria equipa; emotes de todos
+function v4Net(eng, f, rel, pos, now) {
+  if (!eng.iax.v4) return;
+  if (rel < 4) { if (eng.iax.teamMode && !IAX.isEnemy(eng.player, f)) addPing(eng, f, rel, pos ? pos.x : f.x, pos ? pos.y : f.y, true); }
+  else if (rel >= 10 && rel < 16) doEmote(eng, f, rel - 10, true);
+}
+function updatePings(eng, now) {
+  var X = eng.iax, V = X.v4, p = eng.player, i;
+  for (i = V.pings.length - 1; i >= 0; i--) if (now >= V.pings[i].until || (V.pings[i].by.isClone)) V.pings.splice(i, 1);
+  for (i = V.feed.length - 1; i >= 0; i--) if (now - V.feed[i].t > 5000) V.feed.splice(i, 1);
+  if (X.mp || !X.teamMode || now < (V.botPingAt || 0)) return;
+  V.botPingAt = now + 1500;
+  // colegas CPU avisam quando veem inimigos perto de ti e pedem ajuda quando caem
+  for (i = 0; i < X.revives.length; i++) {
+    var bx = X.revives[i];
+    if (!bx.v4pinged && !bx.f.isPlayer && !IAX.isEnemy(p, bx.f)) { bx.v4pinged = true; addPing(eng, bx.f, 1, bx.x, bx.y, true); }
+  }
+  if (now - (V.lastBotPing || 0) < 11000 || Math.random() > 0.3) return;
+  var mates = eng.fighters.filter(function (f) { return f !== p && f.alive && !f.isClone && !f.remote && !IAX.isEnemy(p, f); });
+  for (i = 0; i < mates.length; i++) {
+    var e = nearestEnemy(eng, mates[i], 700);
+    if (e && dist(e.x, e.y, p.x, p.y) < 1200 && !(p.alive && eng.fighterVisible(e))) { V.lastBotPing = now; addPing(eng, mates[i], 0, e.x, e.y, true); return; }
+  }
+}
+
+// ---------- narrador (voz do próprio aparelho, pt-BR)
+var NARR = { last: 0 };
+function pickVoice() {
+  if (pickVoice.v) return pickVoice.v;
+  try {
+    var vs = window.speechSynthesis.getVoices() || [];
+    if (!vs.length) return null;
+    var v = vs.filter(function (x) { return /^pt[-_]BR/i.test(x.lang); })[0] || vs.filter(function (x) { return /^pt/i.test(x.lang); })[0] || null;
+    pickVoice.v = v;
+    return v;
+  } catch (e) { return null; }
+}
+function say(txt, prio) {
+  if (!W4().narr) return;
+  try {
+    var S = window.speechSynthesis, now = performance.now();
+    if (!S || typeof SpeechSynthesisUtterance === 'undefined') return;
+    if (!prio && (now - NARR.last < 1400 || S.speaking)) return;
+    if (S.speaking || S.pending) S.cancel();
+    var u = new SpeechSynthesisUtterance(txt);
+    u.lang = 'pt-BR'; u.rate = 1.12; u.pitch = 0.85; u.volume = 1;
+    var v = pickVoice(); if (v) u.voice = v;
+    S.speak(u); NARR.last = now;
+  } catch (e) {}
+}
+function narrUpdate(eng, now) {
+  var X = eng.iax, V = X.v4, p = eng.player;
+  if (now < (V.narrAt || 0)) return;
+  V.narrAt = now + 500;
+  if (eng.endAt && !V.said.end) { V.said.end = true; say(eng.victory ? 'Vitória!' : 'Fim de jogo.'); }
+  if (X.teamMode && p.alive && !V.said.last && !eng.endAt) {
+    var mates = teamList(eng, teamOf(p)), foes = eng.fighters.some(function (f) { return realEnemy(p, f) && inGame(f); });
+    if (mates.length > 1 && foes && !mates.some(function (f) { return f !== p && inGame(f); })) { V.said.last = true; say('Último sobrevivente!', true); eng.opts.onBanner('ÚLTIMO SOBREVIVENTE!', 'kill'); }
+  }
+  if (X.couples) eng.fighters.forEach(function (f) {
+    if (f.mate && !f.v4coupleSaid && realEnemy(p, f) && !inGame(f) && !inGame(f.mate)) { f.v4coupleSaid = f.mate.v4coupleSaid = true; say('Casal eliminado!'); }
+  });
+}
+
+// ---------- som v4: pan estéreo + eco + compressor e efeitos novos (tudo sintetizado)
+var V4SFX = {
+  step: function (a) { a.noise({ dur: 0.05, vol: 0.07, from: 900, to: 260, type: 'lowpass' }); },
+  stepFar: function (a) { a.noise({ dur: 0.05, vol: 0.03, from: 700, to: 220, type: 'lowpass' }); },
+  ping: function (a) { a.tone({ type: 'sine', f0: 1046, dur: 0.07, vol: 0.12 }); a.tone({ type: 'sine', f0: 1568, dur: 0.12, vol: 0.1, delay: 0.07 }); },
+  emote: function (a) { a.tone({ type: 'triangle', f0: 660, f1: 990, dur: 0.12, vol: 0.09 }); },
+  ultReady: function (a) { a.tone({ type: 'sine', f0: 880, dur: 0.1, vol: 0.1 }); a.tone({ type: 'sine', f0: 1320, dur: 0.16, vol: 0.1, delay: 0.09 }); a.tone({ type: 'sine', f0: 1760, dur: 0.22, vol: 0.08, delay: 0.18 }); },
+  ultCast: function (a) { a.noise({ dur: 0.35, vol: 0.18, from: 400, to: 4200, type: 'bandpass', q: 2 }); a.tone({ type: 'sawtooth', f0: 220, f1: 660, dur: 0.3, vol: 0.08 }); },
+  healPulse: function (a) { [523, 659, 784, 1046].forEach(function (f, i) { a.tone({ type: 'sine', f0: f, dur: 0.25, vol: 0.08, delay: i * 0.06 }); }); },
+  heart: function (a) { a.tone({ type: 'sine', f0: 64, f1: 46, dur: 0.12, vol: 0.34 }); a.tone({ type: 'sine', f0: 58, f1: 42, dur: 0.14, vol: 0.26, delay: 0.17 }); },
+  blackout: function (a) { a.tone({ type: 'sawtooth', f0: 220, f1: 40, dur: 1.1, vol: 0.12 }); a.noise({ dur: 0.5, vol: 0.14, from: 3000, to: 200, type: 'lowpass' }); },
+  lightsOn: function (a) { a.tone({ type: 'sawtooth', f0: 50, f1: 240, dur: 0.6, vol: 0.07 }); a.tone({ type: 'sine', f0: 1200, dur: 0.06, vol: 0.06, delay: 0.55 }); },
+  meeting: function (a) { for (var i = 0; i < 4; i++) a.tone({ type: 'square', f0: i % 2 ? 740 : 988, dur: 0.16, vol: 0.09, delay: i * 0.17 }); },
+  vote: function (a) { a.tone({ type: 'triangle', f0: 520, dur: 0.06, vol: 0.12 }); a.tone({ type: 'triangle', f0: 780, dur: 0.08, vol: 0.1, delay: 0.06 }); },
+  eject: function (a) { a.noise({ dur: 1.2, vol: 0.18, from: 200, to: 4000, type: 'bandpass', q: 1.5 }); a.tone({ type: 'sine', f0: 300, f1: 60, dur: 1.2, vol: 0.12 }); },
+  stab: function (a) { a.noise({ dur: 0.12, vol: 0.32, from: 5000, to: 1500, type: 'highpass' }); a.tone({ type: 'sawtooth', f0: 180, f1: 60, dur: 0.2, vol: 0.16 }); },
+  dropSiren: function (a) { a.tone({ type: 'sine', f0: 420, f1: 820, dur: 0.6, vol: 0.09 }); a.tone({ type: 'sine', f0: 820, f1: 420, dur: 0.6, vol: 0.09, delay: 0.6 }); },
+  dropLand: function (a) { a.noise({ dur: 0.6, vol: 0.5, from: 1200, to: 80 }); a.tone({ type: 'sine', f0: 90, f1: 35, dur: 0.6, vol: 0.5 }); },
+  dropOpen: function (a) { a.tone({ type: 'triangle', f0: 523, dur: 0.12, vol: 0.12 }); a.tone({ type: 'triangle', f0: 784, dur: 0.14, vol: 0.12, delay: 0.1 }); a.tone({ type: 'triangle', f0: 1046, dur: 0.3, vol: 0.12, delay: 0.2 }); },
+  zeroG: function (a) { a.tone({ type: 'sine', f0: 180, f1: 360, dur: 1.4, vol: 0.08 }); a.tone({ type: 'sine', f0: 270, f1: 540, dur: 1.4, vol: 0.05, delay: 0.1 }); },
+  roar: function (a) { a.noise({ dur: 1.3, vol: 0.4, from: 900, to: 120, type: 'lowpass' }); a.tone({ type: 'sawtooth', f0: 110, f1: 55, dur: 1.3, vol: 0.2 }); a.tone({ type: 'square', f0: 70, f1: 40, dur: 1.1, vol: 0.12 }); },
+  slam: function (a) { a.noise({ dur: 0.8, vol: 0.7, from: 1400, to: 60 }); a.tone({ type: 'sine', f0: 70, f1: 25, dur: 0.8, vol: 0.7 }); },
+  warn: function (a) { a.tone({ type: 'square', f0: 330, f1: 300, dur: 0.18, vol: 0.07 }); a.tone({ type: 'square', f0: 330, f1: 300, dur: 0.18, vol: 0.07, delay: 0.3 }); },
+  orb: function (a) { a.tone({ type: 'sine', f0: 900, f1: 300, dur: 0.25, vol: 0.06 }); },
+  tut: function (a) { a.tone({ type: 'sine', f0: 784, dur: 0.1, vol: 0.12 }); a.tone({ type: 'sine', f0: 1175, dur: 0.2, vol: 0.12, delay: 0.09 }); },
+};
+function impulse(c, dur, decay) {
+  var n = Math.floor(c.sampleRate * dur), b = c.createBuffer(2, n, c.sampleRate);
+  for (var ch = 0; ch < 2; ch++) { var d = b.getChannelData(ch); for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, decay); }
+  return b;
+}
+// master -> [compressor] + [eco] -> saída (todos os sons do jogo ganham ambiente e ficam mais "cheios")
+function v4Chain(a) {
+  var c = a.ctx, m = a.master;
+  a.v4fx = { master: m, pans: {} };
+  try {
+    var comp = c.createDynamicsCompressor();
+    comp.threshold.value = -14; comp.knee.value = 10; comp.ratio.value = 4; comp.attack.value = 0.004; comp.release.value = 0.2;
+    var rev = c.createConvolver(), wet = c.createGain();
+    rev.buffer = impulse(c, 1.6, 2.8); wet.gain.value = 0.14;
+    m.disconnect(); m.connect(comp); m.connect(rev); rev.connect(wet); wet.connect(comp); comp.connect(c.destination);
+  } catch (e) { try { m.connect(c.destination); } catch (e2) {} }
+}
+function v4Pan(a, pan) {
+  var key = Math.round(clamp(pan, -1, 1) * 4), P0 = a.v4fx.pans;
+  if (!key) return a.v4fx.master;
+  if (!P0[key]) {
+    if (!a.ctx.createStereoPanner) return a.v4fx.master;
+    var sp = a.ctx.createStereoPanner(); sp.pan.value = key / 4; sp.connect(a.v4fx.master); P0[key] = sp;
+  }
+  return P0[key];
+}
+function installAudioV4() {
+  var A = B.Audio.prototype, base = A.iaxSfx;
+  A.iaxSfx = function (k) {
+    if (!this.ctx) return;
+    var pos = SFX_POS, eng = IAX.eng, m = this.master, routed = false;
+    try {
+      if (this.master && (!this.v4fx || this.v4fx.master !== this.master)) v4Chain(this);
+      if (pos && eng && this.v4fx && this.master === this.v4fx.master) {
+        this.master = v4Pan(this, (pos.x - eng.camX) * eng.viewZoom / Math.max(1, eng.vw * 0.5)); routed = this.master !== m;
+      }
+      if (V4SFX[k]) V4SFX[k](this); else base.call(this, k);
+    } catch (e) {} finally { if (routed) this.master = m; }
+  };
+}
+// passos dos inimigos próximos (dá para os ouvir atrás das paredes) + coração com vida baixa
+function updateSteps(eng, now) {
+  var V = eng.iax.v4, p = eng.player, i;
+  if (p.alive && p.hp / p.maxHp < 0.25 && now >= (V.heartAt || 0)) { V.heartAt = now + 950; sfx(eng, 'heart'); }
+  if (now < (V.stepAt || 0)) return;
+  V.stepAt = now + 110;
+  var lx = p.alive ? p.x : eng.camX, ly = p.alive ? p.y : eng.camY, list = [];
+  for (i = 0; i < eng.fighters.length; i++) {
+    var f = eng.fighters[i];
+    if (f === p || !f.alive || f.isClone || !f.moving || now < (f.v4stepAt || 0)) continue;
+    var d = dist(f.x, f.y, lx, ly);
+    if (d < 760) list.push([d, f]);
+  }
+  list.sort(function (a, b) { return a[0] - b[0]; });
+  for (i = 0; i < Math.min(list.length, IAX.lite ? 1 : 3); i++) {
+    var g = list[i][1];
+    g.v4stepAt = now + (now < (g.speedUntil || 0) || now < (g.motoUntil || 0) ? 210 : 330);
+    sfx(eng, list[i][0] < 380 ? 'step' : 'stepFar', g.x, g.y, 800);
+  }
+}
+
+// ---------- nova onda (Treino): o chefão volta mais forte, heróis e narrador
+function onWaveV4(eng, now) {
+  var X = eng.iax, V = X.v4, p = eng.player;
+  V.said = { first: true };
+  eng.fighters.forEach(function (f) { f.v4coupleSaid = false; if (!f.isPlayer && !f.isClone && realEnemy(p, f) && !f.v4boss) applyHero(eng, f, true); });
+  if (V.boss && V.boss.f) makeBoss(eng, V.boss.f, X.dir.wave, now);
+  else say('Onda ' + X.dir.wave + '!');
+}
+
+// =====================================================================================
+// MODO IMPOSTOR (Treino offline): um traidor secreto na tua equipa — ou és tu
+// =====================================================================================
+function impOf(eng) { var V = eng.iax && eng.iax.v4; return V ? V.imp : null; }
+function crewOf(eng, I) {
+  return eng.fighters.filter(function (f) { return !f.isClone && !f.v4out && f !== I.traitor && teamOf(f) === I.team && inGame(f); });
+}
+function addSus(I, f, v, clue) {
+  if (!f || I.sus[f.id] === undefined) return;
+  I.sus[f.id] += v;
+  if (clue) { var c = I.clues[f.id]; c.push(clue); if (c.length > 2) c.shift(); }
+}
+function onScreen(eng, x, y, m) {
+  var z = eng.viewZoom || 1;
+  return Math.abs(x - eng.camX) < eng.vw / 2 / z + (m || 0) && Math.abs(y - eng.camY) < eng.vh / 2 / z + (m || 0);
+}
+function setupImpostor(eng, now) {
+  var V = eng.iax.v4, p = eng.player, team = teamOf(p);
+  var mates = eng.fighters.filter(function (f) { return f !== p && !f.isClone && teamOf(f) === team; });
+  if (!mates.length) return;
+  var role = IAX.cfg.impRole, me = role === 'imp' || (role !== 'crew' && Math.random() < 0.3);
+  var I = (V.imp = {
+    team: team, enemy: team === 0 ? 1 : 0, me: me, traitor: me ? p : mates[(Math.random() * mates.length) | 0],
+    bodies: [], sus: {}, clues: {}, meeting: null, meetAt: now + 15000, callAt: 0, botAt: 0, tickAt: 0, sabN: 0,
+    stabAt: now + (me ? 12000 : 28000 + Math.random() * 14000), sabAt: now + (me ? 10000 : 24000 + Math.random() * 14000),
+    revealed: false, done: false,
+  });
+  I.traitor.v4imp = true;
+  eng.fighters.forEach(function (f) { if (!f.isClone && teamOf(f) === team) { I.sus[f.id] = 0; I.clues[f.id] = []; } });
+  eng.opts.onBanner(me ? 'VOCÊ É O IMPOSTOR! ELIMINE A TRIPULAÇÃO SEM SER DESCOBERTO' : 'HÁ UM IMPOSTOR NA SUA EQUIPE! DESCUBRA QUEM É', 'kill');
+  say(me ? 'Você é o impostor.' : 'Há um impostor entre nós.', true);
+}
+// golpe silencioso: sem caixa de revive e sem renascer; fica um corpo para reportar
+function stabKill(eng, k, v, now) {
+  var X = eng.iax, I = X.v4.imp, i;
+  if (!v || !v.alive) return false;
+  var x = v.x, y = v.y;
+  v.lives = 1;
+  eng.kill(v, null, now);
+  for (i = X.revives.length - 1; i >= 0; i--) if (X.revives[i].f === v) X.revives.splice(i, 1);
+  v.down = false; v.respawnAt = 0; v.lives = 0; v.v4out = true;
+  I.bodies.push({ x: x, y: y, f: v, color: v.color, t: now, found: false });
+  for (i = 0; i < 16; i++) { var a = rnd(0, TAU); eng.particles.push({ x: x, y: y - 10, vx: Math.cos(a) * rnd(40, 200), vy: Math.sin(a) * rnd(40, 200) - 60, life: rnd(0.4, 0.8), maxLife: 0.8, size: rnd(2, 4), color: i % 2 ? '#ef4444' : '#7f1d1d', kind: 'spark' }); }
+  sfx(eng, 'stab', x, y, 900);
+  var wit = eng.fighters.filter(function (f) { return f !== k && f !== v && f.alive && !f.isClone && !f.isPlayer && !f.v4out && f !== I.traitor && teamOf(f) === I.team && dist(f.x, f.y, x, y) < 430; });
+  if (wit.length && Math.random() < 0.75) {
+    addSus(I, k, 3, wit[0].name + ' viu ' + (k.isPlayer ? 'você' : k.name) + ' perto de ' + v.name);
+    I.callAt = now + 1600; I.caller = wit[0]; I.callBody = true;
+  } else addSus(I, k, 0.5 + Math.random() * 0.6, 'Estava longe do grupo');
+  var pool = crewOf(eng, I).filter(function (f) { return !f.isPlayer; });
+  if (pool.length) addSus(I, pool[(Math.random() * pool.length) | 0], Math.random() * 1.1, 'Estava perto de ' + v.name + ' antes');
+  checkWin(eng, now);
+  return true;
+}
+function revealTraitor(eng, I, now, msg) {
+  var t = I.traitor;
+  if (!t || I.revealed || I.me) return;
+  I.revealed = true;
+  if (t.mcUntil) endMind(eng, t);
+  t.team = I.enemy; t.tier = 'max';
+  eng.ring(t.x, t.y, '#ef4444', 160); eng.ring(t.x, t.y, '#fecaca', 80);
+  eng.opts.onBanner(msg || 'O IMPOSTOR É ' + t.name.toUpperCase() + '!', 'kill');
+  say('O impostor é ' + t.name + '!', true);
+  sfx(eng, 'stab', t.x, t.y, 2000);
+}
+// checkWin: inimigos eliminados mas o impostor ainda está no meio da equipa
+function impHold(eng, now) {
+  var I = eng.iax.v4.imp;
+  if (I.done) return false;
+  if (I.me) {
+    if (!crewOf(eng, I).length) return false;
+    if (!I.holdSaid) { I.holdSaid = true; eng.opts.onBanner('INIMIGOS ELIMINADOS · AGORA, A TRIPULAÇÃO!', 'kill'); }
+    return true;
+  }
+  if (!I.revealed && !I.traitor.v4out && inGame(I.traitor)) { revealTraitor(eng, I, now, 'SÓ RESTA O IMPOSTOR: É ' + I.traitor.name.toUpperCase() + '!'); return true; }
+  return false;
+}
+function sabotage(eng, by, kind, now) {
+  var X = eng.iax, V = X.v4, I = V.imp;
+  if (kind === 'doors' && !(X.levers && X.levers.length)) kind = 'blackout';
+  if (kind === 'blackout') {
+    V.blackoutUntil = now + 14000; V.blackoutBy = by; blindBots(eng, null);
+    if (by && by.v4blind) { by.v4blind = false; by.skill = by.v4skill0; }
+    sfx(eng, 'blackout');
+  } else if (kind === 'doors') {
+    X.levers.forEach(function (lv) { setGate(eng, lv, true, now); });
+    V.doorsUntil = now + 12000; sfx(eng, 'warn');
+  } else {
+    var crew = I ? crewOf(eng, I).filter(function (f) { return f.alive && f !== by; }) : [];
+    var c = crew.length ? crew[(Math.random() * crew.length) | 0] : eng.player;
+    V.gas = { x: c.x, y: c.y, r: 270, born: now, until: now + 12000, by: by, tick: 0 }; sfx(eng, 'warn');
+  }
+  V.sab = { kind: kind, until: now + (kind === 'blackout' ? 14000 : 12000) };
+  eng.opts.onBanner('SABOTAGEM: ' + SAB_TXT[kind] + '!', 'info');
+  say('Sabotagem! ' + SAB_TXT[kind].toLowerCase() + '!');
+  if (I && by) addSus(I, by, by.isPlayer ? 0.3 : 0.5 + Math.random() * 0.4, by.isPlayer ? null : 'Sumiu na hora da sabotagem');
+}
+function impBotTick(eng, I, now) {
+  var t = I.traitor, p = eng.player;
+  if (!t.alive || I.revealed) return;
+  // traição aberta: o jogador ficou sozinho com o impostor
+  if (p.alive && dist(t.x, t.y, p.x, p.y) < 230 && t.hp > t.maxHp * 0.5 && Math.random() < 0.06 &&
+      !crewOf(eng, I).some(function (f) { return f !== p && f.alive && dist(f.x, f.y, p.x, p.y) < 520; })) {
+    revealTraitor(eng, I, now, 'TRAIÇÃO! O IMPOSTOR ' + t.name.toUpperCase() + ' ATACOU!'); return;
+  }
+  if (now >= I.sabAt) { I.sabAt = now + 38000 + Math.random() * 16000; sabotage(eng, t, SAB_KINDS[(Math.random() * 3) | 0], now); }
+  if (now < I.stabAt) return;
+  var vic = null;
+  if (!onScreen(eng, t.x, t.y, 60)) {
+    var list = crewOf(eng, I).filter(function (f) { return !f.isPlayer && f.alive && !onScreen(eng, f.x, f.y, 80) && dist(f.x, f.y, t.x, t.y) < 1400; });
+    list.sort(function (a, b) { return dist(a.x, a.y, t.x, t.y) - dist(b.x, b.y, t.x, t.y); });
+    vic = list[0] || null;
+  }
+  if (!vic) { I.stabAt = now + 2500; return; }
+  placeFighter(t, freeSpotNear(vic.x, vic.y, 22, 60, 24) || { x: vic.x, y: vic.y }); // fora do ecrã ninguém o vê chegar
+  stabKill(eng, t, vic, now);
+  I.stabAt = now + 30000 + Math.random() * 15000;
+}
+function playerStab(eng, now) {
+  var I = impOf(eng), p = eng.player;
+  if (!I || !I.me || I.done || !p.alive) return;
+  if (now < I.stabAt) { deny(eng, 'FACA EM ' + Math.ceil((I.stabAt - now) / 1000) + 's'); return; }
+  var vic = null, bd = 125;
+  crewOf(eng, I).forEach(function (f) { if (f.alive && !f.isPlayer) { var d = dist(f.x, f.y, p.x, p.y); if (d < bd) { bd = d; vic = f; } } });
+  if (!vic) { deny(eng, 'CHEGUE MAIS PERTO'); return; }
+  p.swingAt = now; p.swingDur = 220; p.swingDir = 1;
+  stabKill(eng, p, vic, now);
+  I.stabAt = now + 22000;
+}
+function playerSab(eng, now) {
+  var I = impOf(eng), p = eng.player;
+  if (!I || !I.me || I.done || !p.alive) return;
+  if (now < I.sabAt) { deny(eng, 'SABOTAGEM EM ' + Math.ceil((I.sabAt - now) / 1000) + 's'); return; }
+  sabotage(eng, p, SAB_KINDS[I.sabN++ % 3], now);
+  I.sabAt = now + 30000;
+}
+function deny(eng, txt) {
+  var p = eng.player;
+  if (eng.audio.iaxDenied) eng.audio.iaxDenied();
+  eng.floats.push({ x: p.x, y: p.y - 50, txt: txt, color: '#fca5a5', t: eng.time });
+}
+function callMeeting(eng, caller, body, now) {
+  var X = eng.iax, I = X.v4.imp;
+  if (!I || I.meeting || eng.endAt || eng.ended || I.done) return false;
+  var cands = eng.fighters.filter(function (f) { return !f.isClone && !f.v4out && teamOf(f) === I.team && inGame(f); });
+  if (cands.length < 2) return false;
+  I.meeting = { caller: caller, body: !!body, cands: cands, phase: 'vote', myVote: undefined, tally: {}, skip: 0, out: null };
+  I.bodies.forEach(function (b) { b.found = true; });
+  eng.paused = true;
+  IAX.closeShop();
+  var w = document.getElementById('iax-wheel'); if (w) w.remove();
+  sfx(eng, 'meeting');
+  say(body ? 'Corpo encontrado! Reunião!' : 'Reunião de emergência!', true);
+  showMeeting(eng);
+  return true;
+}
+function resolveMeeting(eng) {
+  var I = impOf(eng), M = I.meeting, p = eng.player, votes = {}, top = null, topS = -1;
+  M.cands.forEach(function (f) { if (!I.me && f.isPlayer) return; var s = (I.sus[f.id] || 0) + Math.random() * 0.8; if (s > topS) { topS = s; top = f; } });
+  M.cands.forEach(function (f) {
+    if (f.isPlayer) return;
+    var v = null;
+    if (f === I.traitor) { // o impostor vota num inocente "suspeito"
+      var inn = M.cands.filter(function (g) { return g !== f && !g.isPlayer; }).sort(function (a, b) { return (I.sus[b.id] || 0) - (I.sus[a.id] || 0); });
+      if (inn.length && Math.random() < 0.7) v = inn[0];
+    } else if (top && top !== f && Math.random() < clamp(0.25 + topS * 0.16, 0, 0.92)) v = top;
+    votes[f.id] = v ? v.id : 'skip';
+  });
+  if (M.cands.indexOf(p) >= 0) votes[p.id] = M.myVote === undefined ? 'skip' : M.myVote;
+  var tally = {}, skip = 0, best = null, bv = 0, tie = false;
+  Object.keys(votes).forEach(function (k) { var v = votes[k]; if (v === 'skip') skip++; else tally[v] = (tally[v] | 0) + 1; });
+  Object.keys(tally).forEach(function (id) { if (tally[id] > bv) { bv = tally[id]; best = id; tie = false; } else if (tally[id] === bv) tie = true; });
+  M.tally = tally; M.skip = skip;
+  M.out = best !== null && !tie && bv > skip ? M.cands.filter(function (f) { return String(f.id) === best; })[0] || null : null;
+}
+function ejectFighter(eng, f, now) {
+  var X = eng.iax, I = X.v4.imp, p = eng.player, i;
+  f.v4out = true;
+  for (i = X.revives.length - 1; i >= 0; i--) if (X.revives[i].f === f) X.revives.splice(i, 1);
+  f.down = false; f.respawnAt = 0; f.lives = 0;
+  if (f.alive) { f.alive = false; f.hp = 0; }
+  eng.ring(f.x, f.y, '#e2e8f0', 140);
+  if (f.isPlayer) { I.done = true; eng.victory = false; eng.placement = 2; eng.endAt = now + 1400; eng.opts.onBanner('VOCÊ FOI DESCOBERTO!', 'info'); return; }
+  if (f === I.traitor) { I.done = true; addCoins(eng, 150, p.x, p.y, 'IMPOSTOR'); eng.opts.onBanner(f.name.toUpperCase() + ' ERA O IMPOSTOR!', 'task'); }
+  checkWin(eng, now);
+}
+function impUpdate(eng, dt, now) {
+  var I = impOf(eng), p = eng.player, i, j;
+  if (!I || I.meeting) return;
+  if (I.callAt && now >= I.callAt) { I.callAt = 0; callMeeting(eng, I.caller, I.callBody, now); return; }
+  if (I.done || eng.endAt || now < I.tickAt) return;
+  I.tickAt = now + 250;
+  var t = I.traitor;
+  if (!I.me && !I.revealed && !t.v4out && !inGame(t)) { // o impostor caiu em combate
+    I.done = true; eng.opts.onBanner('O IMPOSTOR ERA ' + t.name.toUpperCase() + ' — CAIU EM COMBATE', 'task'); say(t.name + ' era o impostor.', true); return;
+  }
+  for (i = 0; i < I.bodies.length; i++) {
+    var b = I.bodies[i];
+    if (b.found) continue;
+    var finder = null, crew = crewOf(eng, I);
+    if (!I.me && p.alive && dist(p.x, p.y, b.x, b.y) < 190) finder = p;
+    for (j = 0; j < crew.length && !finder; j++) if (!crew[j].isPlayer && crew[j].alive && dist(crew[j].x, crew[j].y, b.x, b.y) < 210) finder = crew[j];
+    if (!finder && now - b.t > 26000) { var c2 = crew.filter(function (f) { return !f.isPlayer && f.alive; }); finder = c2[(Math.random() * c2.length) | 0] || null; }
+    if (finder) {
+      b.found = true; I.callAt = now + 800; I.caller = finder; I.callBody = true;
+      eng.floats.push({ x: b.x, y: b.y - 44, txt: 'CORPO ENCONTRADO!', color: '#fca5a5', t: now }); sfx(eng, 'warn');
+      return;
+    }
+  }
+  if (I.me && !crewOf(eng, I).length) {
+    I.done = true; addCoins(eng, 200, p.x, p.y, 'IMPOSTOR');
+    eng.victory = true; eng.placement = 1; eng.endAt = now + 1800;
+    eng.opts.onBanner('VITÓRIA DO IMPOSTOR!', 'kill'); say('Vitória do impostor!', true);
+    return;
+  }
+  if (!I.me && now >= I.botAt) { I.botAt = now + 1000; impBotTick(eng, I, now); }
+}
+
+// =====================================================================================
+// EVENTOS AO VIVO (offline): airdrop, chuva de meteoros, gravidade zero, caixotes, apagão
+// =====================================================================================
+var EVENTS = ['drop', 'meteors', 'zerog', 'crates', 'blackout'];
+var EV_TXT = { drop: 'AIRDROP A CAMINHO!', meteors: 'CHUVA DE METEOROS!', zerog: 'GRAVIDADE ZERO!', crates: 'CAIXOTES DE SUPRIMENTO!', blackout: 'APAGÃO NA ESTAÇÃO!' };
+var EV_SAY = { drop: 'Airdrop a caminho!', meteors: 'Chuva de meteoros!', zerog: 'Gravidade zero!', crates: 'Caixotes de suprimento!', blackout: 'Apagão!' };
+var CRATE_HP = 110;
+function startEvent(eng, k, now) {
+  var V = eng.iax.v4, p = eng.player, i, q;
+  V.evName = k; V.evUntil = now + 8000;
+  if (k === 'drop') {
+    q = rngPoint(Math.random, 60);
+    V.drop = { x: q.x, y: q.y, at: now + 9000, born: now, landed: false, prog: 0, by: null, gone: false, goAt: 0 };
+    V.evUntil = V.drop.at; sfx(eng, 'dropSiren');
+  } else if (k === 'meteors') { V.shower = { n: 12, next: now + 900 }; V.evUntil = now + 11000; }
+  else if (k === 'zerog') {
+    q = freeSpotNear(p.x, p.y, 120, 420, 40) || { x: p.x, y: p.y };
+    V.zero = { x: q.x, y: q.y, r: 400, born: now, until: now + 18000 }; V.evUntil = V.zero.until; sfx(eng, 'zeroG');
+  } else if (k === 'crates') {
+    var n = 0;
+    for (i = 0; i < 40 && n < 7; i++) {
+      var f = eng.fighters[(Math.random() * eng.fighters.length) | 0];
+      var c = f && f.alive ? freeSpotNear(f.x, f.y, 160, 520, 46) : rngPoint(Math.random, 46);
+      if (c && !eng.fighters.some(function (g) { return g.alive && dist(g.x, g.y, c.x, c.y) < 80; })) { makeCrate(eng, c.x, c.y, now); n++; }
+    }
+  } else {
+    V.blackoutUntil = now + 14000; V.blackoutBy = null; blindBots(eng, null); sfx(eng, 'blackout');
+    V.evUntil = V.blackoutUntil;
+  }
+  eng.opts.onBanner(EV_TXT[k], 'info'); say(EV_SAY[k]);
+}
+function makeCrate(eng, x, y, now) {
+  var X = eng.iax, s = 58, bx = Math.round(x - s / 2), by = Math.round(y - s / 2);
+  var ob = fn.N(bx, by, s, s, 'gloo', '#b45309'), occ = { x: bx, y: by, w: s, h: s };
+  B.obstacles.push(ob); eng.occluders.push(occ);
+  X.walls.push({ ob: ob, occ: occ, owner: -1, born: now, until: Infinity, hp: CRATE_HP, hitAt: -9999, vertical: false, color: '#b45309', crate: true });
+  navRefresh(eng, ob);
+  eng.ring(x, y, '#f59e0b', 50);
+}
+function crateLoot(eng, w) {
+  var ob = w.ob, x = ob.x + ob.w / 2, y = ob.y + ob.h / 2, r = Math.random();
+  if (eng.destroyed || eng.pickups.length > 70) return;
+  var add = function (kind, wt) { eng.pickups.push({ id: eng.pickupId++, kind: kind, wt: wt, x: x, y: y, phase: Math.random() * TAU }); };
+  var ws = ['shotgun', 'rifle', 'smg', 'sniper', 'inferno', 'tesla'].filter(function (k) { return WEAPONS[k]; });
+  if (r < 0.45 && ws.length) add('weapon', ws[(Math.random() * ws.length) | 0]);
+  else if (r < 0.85) add('power', randomPower());
+  else add('power', 'coins');
+  eng.ring(x, y, '#fde047', 60);
+}
+function openDrop(eng, D, f, now) {
+  D.gone = true;
+  var ws = ['railgun', 'bazooka', 'minigun', 'nova', 'tesla', 'launcher'].filter(function (k) { return WEAPONS[k]; });
+  var ps = ['phoenix', 'tank', 'blackhole', 'droneGun', 'meteor'];
+  var loot = [['power', ps[(Math.random() * ps.length) | 0]], ['power', 'coins']];
+  if (ws.length) loot.push(['weapon', ws[(Math.random() * ws.length) | 0]], ['weapon', ws[(Math.random() * ws.length) | 0]]);
+  loot.forEach(function (L, i) {
+    var a = (i / loot.length) * TAU, q = freeSpotNear(D.x + Math.cos(a) * 60, D.y + Math.sin(a) * 60, 0, 40, 22) || { x: D.x + Math.cos(a) * 50, y: D.y + Math.sin(a) * 50 };
+    eng.pickups.push({ id: eng.pickupId++, kind: L[0], wt: L[1], x: q.x, y: q.y, phase: Math.random() * TAU });
+  });
+  eng.ring(D.x, D.y, '#fde047', 130);
+  eng.floats.push({ x: D.x, y: D.y - 50, txt: 'LENDÁRIO!', color: '#fde047', t: now });
+  sfx(eng, 'dropOpen', D.x, D.y, 1400);
+  if (f.isPlayer) addCoins(eng, 40, f.x, f.y, 'AIRDROP');
+  else if (near(eng, D.x, D.y, 1200)) eng.opts.onBanner(f.name.toUpperCase() + ' ABRIU O AIRDROP!', 'info');
+}
+function updateEvents(eng, dt, now) {
+  var X = eng.iax, V = X.v4, i, f;
+  // airdrop: desce de paraquedas, aterra e abre-se ficando 2,2 s sozinho ao lado
+  var D = V.drop;
+  if (D && !D.gone) {
+    if (!D.landed && now >= D.at) {
+      D.landed = true;
+      eng.ring(D.x, D.y, '#fde047', 170); eng.ring(D.x, D.y, '#ffffff', 90);
+      if (near(eng, D.x, D.y, 900)) eng.shake = Math.max(eng.shake || 0, 12);
+      sfx(eng, 'dropLand', D.x, D.y, 1600);
+      for (i = 0; i < 22; i++) { var a = rnd(0, TAU); eng.particles.push({ x: D.x, y: D.y, vx: Math.cos(a) * rnd(80, 320), vy: Math.sin(a) * rnd(40, 160) - 80, life: rnd(0.4, 0.9), maxLife: 0.9, size: rnd(3, 6), color: i % 2 ? '#a8a29e' : '#fde047', kind: 'spark' }); }
+    }
+    if (D.landed) {
+      if (now >= D.goAt) { // os bots vão disputar o airdrop
+        D.goAt = now + 2500;
+        eng.fighters.filter(function (g) { return g.alive && !g.isPlayer && !g.remote && !g.isClone && !g.v4boss; })
+          .sort(function (a, b) { return dist(a.x, a.y, D.x, D.y) - dist(b.x, b.y, D.x, D.y); }).slice(0, 3)
+          .forEach(function (g) { g.goalX = D.x; g.goalY = D.y; });
+      }
+      var who = null, n = 0;
+      for (i = 0; i < eng.fighters.length; i++) { f = eng.fighters[i]; if (f.alive && !f.isClone && dist(f.x, f.y, D.x, D.y) < 85) { n++; who = f; } }
+      if (n === 1) { if (D.by !== who) { D.by = who; D.prog = 0; } D.prog += dt / 2.2; if (D.prog >= 1) openDrop(eng, D, who, now); }
+      else if (!n) D.prog = Math.max(0, D.prog - dt * 0.6);
+    }
+  }
+  // gravidade zero: quem está dentro flutua à deriva
+  var Z = V.zero;
+  if (Z) {
+    if (now >= Z.until) V.zero = null;
+    else for (i = 0; i < eng.fighters.length; i++) {
+      f = eng.fighters[i];
+      if (!f.alive || f.remote || dist(f.x, f.y, Z.x, Z.y) > Z.r) continue;
+      var ang = now / 900 + (typeof f.id === 'number' ? f.id : i) * 1.7;
+      f.kvx = (f.kvx || 0) + Math.cos(ang) * 560 * dt; f.kvy = (f.kvy || 0) + Math.sin(ang * 1.3) * 560 * dt;
+      if (Math.random() < dt * 5 && near(eng, f.x, f.y, 900)) eng.particles.push({ x: f.x + rnd(-14, 14), y: f.y + 20, vx: rnd(-20, 20), vy: rnd(-60, -20), life: 0.8, maxLife: 0.8, size: rnd(2, 3.5), color: '#c4b5fd', kind: 'spark' });
+    }
+  }
+  // gás da sabotagem: só fere a tripulação
+  var G = V.gas;
+  if (G) {
+    if (now >= G.until) V.gas = null;
+    else if (now >= G.tick) {
+      G.tick = now + 500;
+      eng.fighters.slice().forEach(function (g) {
+        if (!g.alive || g.isClone || g === G.by || dist(g.x, g.y, G.x, G.y) > G.r) return;
+        if (V.imp && teamOf(g) !== V.imp.team) return;
+        envHit(eng, g, 4.5, now);
+      });
+    }
+  }
+  var S = V.shower;
+  if (S && now >= S.next) {
+    if (S.n-- <= 0) V.shower = null;
+    else {
+      S.next = now + rnd(550, 1000);
+      var live = eng.fighters.filter(function (g) { return g.alive && !g.isClone; });
+      var tg = Math.random() < 0.45 && eng.player.alive ? eng.player : live[(Math.random() * live.length) | 0];
+      if (tg) castMeteor(eng, null, tg.x + rnd(-260, 260), tg.y + rnd(-260, 260), now, true, Math.random() < 0.6);
+    }
+  }
+  if (V.doorsUntil && now >= V.doorsUntil) { V.doorsUntil = 0; (X.levers || []).forEach(function (lv) { setGate(eng, lv, false, now); }); }
+  if (V.tut || eng.endAt || now < V.evAt) return;
+  var pool = EVENTS.filter(function (k) { return k !== V.lastEv && !(k === 'blackout' && V.imp) && !(k === 'drop' && V.drop && !V.drop.gone); });
+  var k = pool[(Math.random() * pool.length) | 0];
+  V.lastEv = k; V.evAt = now + 50000 + Math.random() * 22000;
+  startEvent(eng, k, now);
+}
+
+// =====================================================================================
+// CHEFÃO COOPERATIVO: a equipa contra o TITÃ (3 fases; volta mais forte a cada onda)
+// =====================================================================================
+function setupBoss(eng, now) {
+  var X = eng.iax, p = eng.player;
+  var f = eng.fighters.filter(function (g) { return !g.isClone && realEnemy(p, g); })[0];
+  if (!f) return;
+  for (var i = X.allies.length - 1; i >= 0; i--) if (X.allies[i].owner === f) X.allies.splice(i, 1);
+  X.v4.boss = { f: f };
+  makeBoss(eng, f, 1, now);
+}
+function makeBoss(eng, f, lvl, now) {
+  var hp = Math.round(5200 * (1 + 0.3 * (lvl - 1)));
+  if (!f.v4spd0) f.v4spd0 = f.baseSpeed || 1;
+  f.v4boss = { lvl: lvl, phase: 1, sc: 2.05, atkAt: now + 4000, slams: [], waves: [], dead: false };
+  f.v4hero = null; f.name = 'TITÃ'; f.lives = 1; f.tier = 'max'; f.lvl = 1; f.spdK = 1; f.rageUntil = 0;
+  f.maxHp = hp; f.hp = hp;
+  f.dmgMul = 1.6 * (1 + 0.12 * (lvl - 1)); f.baseSpeed = f.v4spd0 * 0.84; f.baseRadius = 40;
+  snapBase(f);
+  eng.ring(f.x, f.y, '#ef4444', 220);
+  if (near(eng, f.x, f.y, 1400)) eng.shake = Math.max(eng.shake || 0, 10);
+  eng.opts.onBanner('CHEFÃO: TITÃ NÍVEL ' + lvl + '!', 'kill');
+  sfx(eng, 'roar'); say(lvl > 1 ? 'O titã voltou mais forte!' : 'Cuidado! O titã chegou!', true);
+}
+function updateBoss(eng, dt, now) {
+  var V = eng.iax.v4, f = V.boss && V.boss.f, i, j;
+  if (!f || !f.v4boss) return;
+  var Bs = f.v4boss, K = f.dmgMul / 1.6;
+  if (!f.alive) {
+    if (!Bs.dead) {
+      Bs.dead = true; Bs.slams.length = 0; Bs.waves.length = 0;
+      var c = 180 + 60 * Bs.lvl;
+      addCoins(eng, c, f.x, f.y, 'CHEFÃO');
+      startExec(eng, 'wave', 'CHEFÃO DERROTADO!', '+' + c + ' moedas · ele volta mais forte');
+      say('Chefão derrotado!', true);
+    }
+    return;
+  }
+  var ph = f.hp / f.maxHp > 0.66 ? 1 : f.hp / f.maxHp > 0.33 ? 2 : 3;
+  if (ph > Bs.phase) {
+    Bs.phase = ph;
+    eng.opts.onBanner(ph === 3 ? 'FÚRIA DO TITÃ!' : 'TITÃ · FASE 2', 'kill');
+    sfx(eng, 'roar'); say(ph === 3 ? 'O titã está furioso!' : 'Fase dois!', true);
+    eng.ring(f.x, f.y, '#ef4444', 260);
+    if (near(eng, f.x, f.y, 1400)) eng.shake = Math.max(eng.shake || 0, 12);
+    if (ph === 3) { f.rageUntil = now + 600000; f.spdK = 1.25; }
+  }
+  if (now >= Bs.atkAt && !eng.endAt) {
+    var tg = eng.fighters.filter(function (g) { return g.alive && !g.isClone && IAX.isEnemy(f, g) && dist(g.x, g.y, f.x, f.y) < 1150; });
+    if (tg.length) {
+      var t = tg[(Math.random() * tg.length) | 0], roll = Math.random();
+      var kind = roll < 0.45 ? 'slam' : roll < 0.75 || ph === 1 ? 'wave' : 'rain';
+      if (kind === 'slam') {
+        for (i = 0; i < ph; i++) Bs.slams.push({ x: t.x + (i ? rnd(-170, 170) : 0), y: t.y + (i ? rnd(-170, 170) : 0), born: now, at: now + 1150 + i * 260, r: 175 });
+        sfx(eng, 'warn', t.x, t.y, 1500);
+      } else if (kind === 'wave') {
+        Bs.waves.push({ x: f.x, y: f.y, born: now, hit: {} });
+        if (ph === 3) Bs.waves.push({ x: f.x, y: f.y, born: now + 450, hit: {} });
+        sfx(eng, 'roar', f.x, f.y, 1500);
+      } else for (i = 0; i < 5; i++) castMeteor(eng, f, t.x + rnd(-240, 240), t.y + rnd(-240, 240), now + i * 120, false, true);
+      Bs.atkAt = now + (ph === 1 ? 4300 : ph === 2 ? 3500 : 2700) + Math.random() * 1200;
+    } else Bs.atkAt = now + 900;
+  }
+  for (i = Bs.slams.length - 1; i >= 0; i--) {
+    var s = Bs.slams[i];
+    if (now < s.at) continue;
+    Bs.slams.splice(i, 1);
+    areaHit(eng, s.x, s.y, s.r, 30 * K, f, now, 760);
+    eng.ring(s.x, s.y, '#fb923c', s.r); eng.ring(s.x, s.y, '#fff7ed', s.r * 0.5);
+    if (near(eng, s.x, s.y, 900)) eng.shake = Math.max(eng.shake || 0, 11);
+    sfx(eng, 'slam', s.x, s.y, 1400);
+  }
+  for (i = Bs.waves.length - 1; i >= 0; i--) {
+    var w = Bs.waves[i], R = ((now - w.born) / 1400) * 760;
+    if (R > 780) { Bs.waves.splice(i, 1); continue; }
+    if (R <= 0) continue;
+    for (j = 0; j < eng.fighters.length; j++) {
+      var g = eng.fighters[j];
+      if (!g.alive || g.isClone || w.hit[g.id] || !IAX.isEnemy(f, g)) continue;
+      if (Math.abs(dist(g.x, g.y, w.x, w.y) - R) < 30 + g.radius * 0.5) {
+        w.hit[g.id] = 1;
+        var an = Math.atan2(g.y - w.y, g.x - w.x);
+        if (!g.remote) { g.kvx = (g.kvx || 0) + Math.cos(an) * 620; g.kvy = (g.kvy || 0) + Math.sin(an) * 620; }
+        eng.damage(g, 16 * K, f.id, now);
+      }
+    }
+  }
+}
+
+// =====================================================================================
+// TUTORIAL JOGÁVEL (1 min): termina numa vitória com recompensa e convite
+// =====================================================================================
+var TUT = [
+  'Mova-se: arraste o joystick (ou use W A S D)',
+  'Pegue a arma brilhante ao seu lado',
+  'Atire no boneco de treino: 3 acertos',
+  'Use a sua ULTI: botão ULTI (ou tecla R)',
+  'Marque o inimigo: botão 📍 (ou tecla T)',
+  'Agora é pra valer: elimine o inimigo!',
+];
+function setupTut(eng, now) {
+  var X = eng.iax, V = X.v4, p = eng.player;
+  var d = eng.fighters.filter(function (f) { return !f.isClone && realEnemy(p, f); })[0];
+  if (!d) return;
+  for (var i = X.allies.length - 1; i >= 0; i--) if (X.allies[i].owner === d) X.allies.splice(i, 1);
+  d.v4hero = null; d.frozenUntil = DORMANT; d.name = 'BONECO'; d.item = null;
+  V.tut = { step: 0, at: now, x0: p.x, y0: p.y, w0: p.weapon, hits: 0, d: d, pinged: false, won: false, done: false };
+  V.evAt = Infinity;
+  tutCard(eng);
+  say('Bem-vindo à arena! Siga as instruções.', true);
+}
+function tutNext(eng, now) {
+  var T = eng.iax.v4.tut, p = eng.player, d = T.d, q;
+  T.step++; T.at = now;
+  sfx(eng, 'tut');
+  if (T.step === 1) {
+    q = freeSpotNear(p.x, p.y, 110, 190, 26) || { x: p.x + 120, y: p.y };
+    eng.pickups.push({ id: eng.pickupId++, kind: 'weapon', wt: WEAPONS.rifle ? 'rifle' : 'smg', x: q.x, y: q.y, phase: 0 });
+    T.w0 = p.weapon;
+  } else if (T.step === 2) {
+    q = freeSpotNear(p.x, p.y, 240, 340, 30);
+    if (q) placeFighter(d, q);
+    eng.ring(d.x, d.y, '#38bdf8', 80);
+  } else if (T.step === 3) p.v4cdUntil = 0;
+  else if (T.step === 5) {
+    d.frozenUntil = 0; d.dmgMul *= 0.35; d.skill = Math.max(d.skill || 0.1, 0.22);
+    d.maxHp = Math.round(d.maxHp * 0.8); d.hp = d.maxHp;
+  }
+  tutCard(eng);
+}
+function tutUpdate(eng, now) {
+  var T = eng.iax.v4.tut, p = eng.player, d;
+  if (!T || T.done) return;
+  d = T.d;
+  if (T.step < 5 && d.alive && d.hp < d.maxHp) { if (T.step === 2) T.hits++; d.hp = d.maxHp; }
+  if (T.step === 0 && dist(p.x, p.y, T.x0, T.y0) > 230) tutNext(eng, now);
+  else if (T.step === 1 && p.weapon !== T.w0) tutNext(eng, now);
+  else if (T.step === 2 && T.hits >= 3) tutNext(eng, now);
+  else if (T.step === 3 && (p.v4ultAt || 0) > T.at) tutNext(eng, now);
+  else if (T.step === 4 && T.pinged) tutNext(eng, now);
+  if (eng.victory && eng.endAt && !T.won) {
+    T.won = true;
+    var v = W4();
+    T.first = !v.tutDone; v.tutDone = true;
+    if (T.first) { addCoins(eng, 150, p.x, p.y, 'TUTORIAL'); v.heroes.sombra = 1; }
+    IAX.saveWallet();
+    say('Muito bem! Tutorial concluído!', true);
+  }
+}
+
+// =====================================================================================
+// DESENHO v4 — chão (corpos, zonas, avisos), ar (airdrop, marcações, emotes), ecrã e minimapa
+// =====================================================================================
+function label4(ctx, eng, txt, x, y, col, size) {
+  ctx.font = '800 ' + (size || 13) + 'px ' + fontOf(eng); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(5,8,18,0.9)'; ctx.strokeText(txt, x, y);
+  ctx.fillStyle = col; ctx.fillText(txt, x, y);
+}
+function emoji(ctx, txt, x, y, size) { ctx.font = size + 'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(txt, x, y); }
+function drawBody(ctx, b) {
+  ctx.save(); ctx.translate(b.x, b.y + 6);
+  ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.beginPath(); ctx.ellipse(0, 14, 28, 8, 0, 0, TAU); ctx.fill();
+  ctx.lineWidth = 3; ctx.strokeStyle = INK; ctx.fillStyle = b.color;
+  ctx.beginPath(); fn.X(ctx, -20, -4, 40, 22, 9); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = 'rgba(0,0,0,0.28)'; ctx.fillRect(-17, -2, 34, 5);
+  ctx.fillStyle = '#f8fafc'; ctx.lineWidth = 2.2;
+  ctx.beginPath(); fn.X(ctx, -3, -18, 6, 16, 3); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.arc(-3.5, -19, 4, 0, TAU); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.arc(3.5, -19, 4, 0, TAU); ctx.fill(); ctx.stroke();
+  ctx.restore();
+}
+function drawSupply(ctx, x, y, s) {
+  ctx.save(); ctx.translate(x, y); ctx.lineWidth = 3; ctx.strokeStyle = INK;
+  ctx.fillStyle = '#b45309'; ctx.beginPath(); fn.X(ctx, -s, -s * 0.8, s * 2, s * 1.6, 5); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#fde047'; ctx.fillRect(-s, -4, s * 2, 8); ctx.fillRect(-4, -s * 0.8, 8, s * 1.6);
+  ctx.lineWidth = 1.5; ctx.strokeRect(-s, -4, s * 2, 8);
+  ctx.restore();
+}
+function drawCrate(ctx, w, now) {
+  var ob = w.ob, x = ob.x, y = ob.y, s = ob.w, hurt = 1 - clamp(w.hp / CRATE_HP, 0, 1), i;
+  ctx.save();
+  ctx.fillStyle = 'rgba(0,0,0,0.32)'; ctx.fillRect(x + 4, y + 8, s, s);
+  ctx.fillStyle = now - w.hitAt < 90 ? '#fcd34d' : '#a16207'; ctx.strokeStyle = INK; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.rect(x, y, s, s); ctx.fill(); ctx.stroke();
+  ctx.strokeStyle = 'rgba(66,32,6,0.8)'; ctx.lineWidth = 2; ctx.beginPath();
+  for (i = 1; i < 4; i++) { ctx.moveTo(x + 3, y + (s * i) / 4); ctx.lineTo(x + s - 3, y + (s * i) / 4); }
+  ctx.stroke();
+  ctx.strokeStyle = '#78350f'; ctx.lineWidth = 5; ctx.beginPath();
+  ctx.moveTo(x + 6, y + 6); ctx.lineTo(x + s - 6, y + s - 6); ctx.moveTo(x + s - 6, y + 6); ctx.lineTo(x + 6, y + s - 6); ctx.stroke();
+  if (hurt > 0.3) {
+    ctx.strokeStyle = 'rgba(0,0,0,0.65)'; ctx.lineWidth = 1.6; ctx.beginPath();
+    ctx.moveTo(x + s * 0.2, y); ctx.lineTo(x + s * 0.35, y + s * 0.4); ctx.lineTo(x + s * 0.25, y + s * 0.7);
+    if (hurt > 0.65) { ctx.moveTo(x + s, y + s * 0.3); ctx.lineTo(x + s * 0.6, y + s * 0.5); ctx.lineTo(x + s * 0.7, y + s); }
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+function drawGroundV4(eng, now, anim) {
+  var V = eng.iax.v4, ctx = eng.ctx, k, g;
+  ctx.save();
+  if (V.zero) {
+    var Z = V.zero; k = clamp(Math.min((now - Z.born) / 600, (Z.until - now) / 600), 0, 1);
+    ctx.globalAlpha = k;
+    g = ctx.createRadialGradient(Z.x, Z.y, Z.r * 0.2, Z.x, Z.y, Z.r);
+    g.addColorStop(0, 'rgba(167,139,250,0.04)'); g.addColorStop(1, 'rgba(139,92,246,0.24)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(Z.x, Z.y, Z.r, 0, TAU); ctx.fill();
+    ctx.setLineDash([18, 14]); ctx.lineDashOffset = -anim / 40; ctx.strokeStyle = 'rgba(196,181,253,0.85)'; ctx.lineWidth = 4; ctx.stroke(); ctx.setLineDash([]);
+    label4(ctx, eng, 'GRAVIDADE ZERO · ' + Math.ceil((Z.until - now) / 1000) + 's', Z.x, Z.y - Z.r - 16, '#ddd6fe', 15);
+  }
+  if (V.gas) {
+    var G = V.gas; k = clamp(Math.min((now - G.born) / 500, (G.until - now) / 500), 0, 1);
+    ctx.globalAlpha = k;
+    for (var i = 0; i < 5; i++) {
+      var a = anim / 1400 + i * 1.26, r = G.r * (0.45 + 0.12 * Math.sin(anim / 700 + i));
+      g = ctx.createRadialGradient(G.x + Math.cos(a) * G.r * 0.35, G.y + Math.sin(a) * G.r * 0.35, 0, G.x + Math.cos(a) * G.r * 0.35, G.y + Math.sin(a) * G.r * 0.35, r);
+      g.addColorStop(0, 'rgba(132,204,22,0.30)'); g.addColorStop(1, 'rgba(132,204,22,0)');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(G.x + Math.cos(a) * G.r * 0.35, G.y + Math.sin(a) * G.r * 0.35, r, 0, TAU); ctx.fill();
+    }
+    ctx.strokeStyle = 'rgba(163,230,53,0.7)'; ctx.lineWidth = 3; ctx.setLineDash([10, 10]); ctx.beginPath(); ctx.arc(G.x, G.y, G.r, 0, TAU); ctx.stroke(); ctx.setLineDash([]);
+    label4(ctx, eng, '☣ GÁS VENENOSO', G.x, G.y - G.r - 14, '#bef264', 14);
+  }
+  ctx.globalAlpha = 1;
+  var D = V.drop;
+  if (D && !D.gone && !D.landed) {
+    var q = clamp((now - D.born) / (D.at - D.born), 0, 1), pr = 70 + 20 * Math.sin(anim / 120);
+    ctx.strokeStyle = 'rgba(253,224,71,0.9)'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(D.x, D.y, pr, 0, TAU); ctx.stroke();
+    ctx.fillStyle = 'rgba(0,0,0,' + (0.15 + 0.35 * q).toFixed(3) + ')'; ctx.beginPath(); ctx.ellipse(D.x, D.y + 8, 20 + 26 * q, 8 + 10 * q, 0, 0, TAU); ctx.fill();
+    label4(ctx, eng, 'AIRDROP ' + Math.ceil((D.at - now) / 1000) + 's', D.x, D.y + pr + 16, '#fde047', 14);
+  }
+  if (V.boss && V.boss.f.v4boss) V.boss.f.v4boss.slams.forEach(function (s) {
+    var t = clamp((now - s.born) / (s.at - s.born), 0, 1);
+    ctx.fillStyle = 'rgba(239,68,68,' + (0.1 + 0.22 * t).toFixed(3) + ')'; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, TAU); ctx.fill();
+    ctx.strokeStyle = 'rgba(254,202,202,0.9)'; ctx.lineWidth = 3; ctx.stroke();
+    ctx.fillStyle = 'rgba(239,68,68,0.35)'; ctx.beginPath(); ctx.arc(s.x, s.y, s.r * t, 0, TAU); ctx.fill();
+  });
+  if (V.imp) V.imp.bodies.forEach(function (b) { drawBody(ctx, b); });
+  ctx.restore();
+}
+function drawWorldV4(eng, now, anim) {
+  var V = eng.iax.v4, ctx = eng.ctx, p = eng.player, i;
+  ctx.save();
+  var D = V.drop;
+  if (D && !D.gone) {
+    var h = D.landed ? 0 : Math.max(0, D.at - now) * 0.16, cy = D.y - h;
+    if (D.landed) {
+      var g = ctx.createLinearGradient(0, D.y - 420, 0, D.y);
+      g.addColorStop(0, 'rgba(253,224,71,0)'); g.addColorStop(1, 'rgba(253,224,71,0.35)');
+      ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = g; ctx.fillRect(D.x - 16, D.y - 420, 32, 420); ctx.globalCompositeOperation = 'source-over';
+    } else {
+      ctx.strokeStyle = 'rgba(226,232,240,0.8)'; ctx.lineWidth = 1.5; ctx.beginPath();
+      ctx.moveTo(D.x - 22, cy - 14); ctx.lineTo(D.x - 44, cy - 70); ctx.moveTo(D.x + 22, cy - 14); ctx.lineTo(D.x + 44, cy - 70); ctx.stroke();
+      ctx.fillStyle = '#ef4444'; ctx.strokeStyle = INK; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(D.x, cy - 70, 48, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#f8fafc'; ctx.beginPath(); ctx.moveTo(D.x, cy - 70); ctx.arc(D.x, cy - 70, 48, Math.PI * 1.33, Math.PI * 1.66); ctx.closePath(); ctx.fill();
+    }
+    drawSupply(ctx, D.x, cy, 24);
+    if (D.landed && D.prog > 0.01) {
+      ctx.strokeStyle = 'rgba(5,8,18,0.8)'; ctx.lineWidth = 8; ctx.beginPath(); ctx.arc(D.x, D.y, 40, 0, TAU); ctx.stroke();
+      ctx.strokeStyle = '#fde047'; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(D.x, D.y, 40, -Math.PI / 2, -Math.PI / 2 + TAU * D.prog); ctx.stroke();
+    }
+    if (D.landed) label4(ctx, eng, 'AIRDROP LENDÁRIO', D.x, D.y - 52, '#fde047', 13);
+  }
+  if (V.boss && V.boss.f.v4boss) V.boss.f.v4boss.waves.forEach(function (w) {
+    var R = ((now - w.born) / 1400) * 760;
+    if (R <= 0 || R > 780) return;
+    ctx.globalAlpha = clamp(1 - R / 780, 0, 1);
+    ctx.strokeStyle = 'rgba(251,113,133,0.9)'; ctx.lineWidth = 18; ctx.beginPath(); ctx.arc(w.x, w.y, R, 0, TAU); ctx.stroke();
+    ctx.strokeStyle = '#fff1f2'; ctx.lineWidth = 4; ctx.stroke();
+    ctx.globalAlpha = 1;
+  });
+  for (i = 0; i < V.pings.length; i++) {
+    var P0 = V.pings[i], D0 = PINGS[P0.k], age = now - P0.t, bob = Math.sin(anim / 160) * 4;
+    ctx.globalAlpha = clamp((P0.until - now) / 600, 0, 1);
+    ctx.strokeStyle = D0.col; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(P0.x, P0.y, 16 + (age % 900) / 30, 0, TAU); ctx.stroke();
+    ctx.fillStyle = 'rgba(5,8,18,0.8)'; ctx.beginPath(); ctx.arc(P0.x, P0.y - 40 + bob, 17, 0, TAU); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#fff'; emoji(ctx, D0.icon, P0.x, P0.y - 39 + bob, 18);
+    label4(ctx, eng, P0.by.isPlayer ? 'VOCÊ' : P0.by.name, P0.x, P0.y - 66 + bob, D0.col, 11);
+  }
+  ctx.globalAlpha = 1;
+  for (i = 0; i < eng.fighters.length; i++) {
+    var f = eng.fighters[i], E = f.v4emote;
+    if (!E || now - E.t > 2400 || !f.alive || (f !== p && !eng.fighterVisible(f))) continue;
+    var up = Math.min(1, (now - E.t) / 160), by = f.y - 86 - (f.v4boss ? 40 : 0);
+    ctx.globalAlpha = clamp((2400 - (now - E.t)) / 300, 0, 1);
+    ctx.fillStyle = '#f8fafc'; ctx.strokeStyle = INK; ctx.lineWidth = 2.5;
+    ctx.beginPath(); fn.X(ctx, f.x - 24, by - 18 * up, 48, 34 * up, 12); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(f.x - 6, by + 16 * up - 2); ctx.lineTo(f.x, by + 24 * up); ctx.lineTo(f.x + 6, by + 16 * up - 2); ctx.fill();
+    if (E.e === 'GG') label4(ctx, eng, 'GG', f.x, by, '#0f172a', 18); else { ctx.fillStyle = '#000'; emoji(ctx, E.e, f.x, by + 1, 22 * up); }
+  }
+  ctx.restore();
+}
+function edgeMark(ctx, eng, m) {
+  var vw = eng.vw, vh = eng.vh, s = toScreen(eng, m.x, m.y), pad = 36;
+  if (s.x > pad && s.x < vw - pad && s.y > pad && s.y < vh - pad) return;
+  var cx = vw / 2, cy = vh / 2, dx = s.x - cx, dy = s.y - cy;
+  var k = Math.min((cx - pad) / Math.max(1, Math.abs(dx)), (cy - pad) / Math.max(1, Math.abs(dy))), a = Math.atan2(dy, dx);
+  ctx.save(); ctx.translate(cx + dx * k, cy + dy * k);
+  ctx.fillStyle = 'rgba(5,8,18,0.8)'; ctx.strokeStyle = m.col; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.arc(0, 0, 16, 0, TAU); ctx.fill(); ctx.stroke();
+  ctx.rotate(a); ctx.fillStyle = m.col; ctx.beginPath(); ctx.moveTo(25, 0); ctx.lineTo(17, -7); ctx.lineTo(17, 7); ctx.closePath(); ctx.fill(); ctx.rotate(-a);
+  ctx.fillStyle = '#fff'; emoji(ctx, m.icon, 0, 1, 15);
+  ctx.restore();
+}
+function drawScreenV4(eng) {
+  var X = eng.iax, V = X.v4, ctx = eng.ctx, vw = eng.vw, vh = eng.vh, now = eng.time, p = eng.player, font = fontOf(eng), i;
+  ctx.save();
+  V.pings.forEach(function (g) { edgeMark(ctx, eng, { x: g.x, y: g.y, icon: PINGS[g.k].icon, col: PINGS[g.k].col }); });
+  if (V.drop && !V.drop.gone) edgeMark(ctx, eng, { x: V.drop.x, y: V.drop.y, icon: '📦', col: '#fde047' });
+  if (V.boss && V.boss.f.alive && !onScreen(eng, V.boss.f.x, V.boss.f.y, -40)) edgeMark(ctx, eng, { x: V.boss.f.x, y: V.boss.f.y, icon: '👹', col: '#ef4444' });
+  // coluna de avisos à esquerda: papel no Modo Impostor, sabotagem, evento e marcações dos colegas
+  var x = 10, y = Math.round(Math.max(vh * 0.27, 228)); // abaixo da lista de tarefas
+  var chip = function (txt, col) {
+    ctx.font = '800 12px ' + font; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    var w = Math.min(vw * 0.6, ctx.measureText(txt).width + 18);
+    ctx.fillStyle = 'rgba(5,8,18,0.74)'; ctx.beginPath(); fn.X(ctx, x, y, w, 24, 12); ctx.fill();
+    ctx.strokeStyle = col; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.fillStyle = col; ctx.fillText(txt, x + 9, y + 12.5, w - 18); y += 29;
+  };
+  var I = V.imp;
+  if (I && !I.done) {
+    if (I.me) chip('🔪 IMPOSTOR · faltam ' + crewOf(eng, I).length + ' · faca ' + (now < I.stabAt ? Math.ceil((I.stabAt - now) / 1000) + 's' : 'PRONTA'), '#fca5a5');
+    else chip('🧑‍🚀 TRIPULANTE · ache o impostor', '#a5f3fc');
+  }
+  if (V.sab && now < V.sab.until) chip('⚠ SABOTAGEM: ' + SAB_TXT[V.sab.kind] + ' ' + Math.ceil((V.sab.until - now) / 1000) + 's', '#fbbf24');
+  if (V.evName && now < V.evUntil) chip('★ ' + EV_TXT[V.evName], '#fde047');
+  for (i = 0; i < V.feed.length; i++) { var F = V.feed[i]; ctx.globalAlpha = clamp((5000 - (now - F.t)) / 600, 0, 1); chip(F.txt, F.col); }
+  ctx.globalAlpha = 1;
+  // barra de vida do chefão
+  var bf = V.boss && V.boss.f;
+  if (bf && bf.alive && bf.v4boss) {
+    var Bs = bf.v4boss, bw = Math.min(520, vw * 0.62), bx = (vw - bw) / 2, byy = Math.round(Math.max(vh * 0.23, 118)), k = clamp(bf.hp / bf.maxHp, 0, 1);
+    label4(ctx, eng, '👹 TITÃ · NÍVEL ' + Bs.lvl + ' · FASE ' + Bs.phase, vw / 2, byy - 12, Bs.phase === 3 ? '#fca5a5' : '#fde68a', 14);
+    ctx.fillStyle = 'rgba(5,8,18,0.82)'; ctx.beginPath(); fn.X(ctx, bx - 4, byy - 2, bw + 8, 20, 9); ctx.fill();
+    var g = ctx.createLinearGradient(bx, 0, bx + bw, 0); g.addColorStop(0, '#dc2626'); g.addColorStop(1, '#f97316');
+    ctx.fillStyle = g; ctx.beginPath(); fn.X(ctx, bx, byy + 2, Math.max(8, bw * k), 12, 6); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.75)'; ctx.fillRect(bx + bw / 3, byy, 2, 16); ctx.fillRect(bx + (bw * 2) / 3, byy, 2, 16);
+  }
+  if (V.specF && !p.alive) label4(ctx, eng, '👁 ASSISTINDO ' + V.specF.name.toUpperCase() + ' · você ainda pode marcar inimigos', vw / 2, Math.round(vh * 0.32), '#a5f3fc', 14);
+  ctx.restore();
+}
+function drawMiniV4(eng, cv, big) {
+  var V = eng.iax.v4, ctx = cv.getContext('2d'), n = cv.width, h = cv.height, i;
+  if (!ctx || n < 8 || h < 8) return;
+  var pr = Math.max(1, n / Math.max(1, cv.clientWidth || n)), s = Math.min(n / WORLD.w, h / WORLD.h), ox = (n - WORLD.w * s) / 2, oy = (h - WORLD.h * s) / 2;
+  var mx = function (x) { return ox + x * s; }, my = function (y) { return oy + y * s; };
+  ctx.save();
+  ctx.lineWidth = 1.5 * pr;
+  if (V.zero) { ctx.strokeStyle = '#c4b5fd'; ctx.beginPath(); ctx.arc(mx(V.zero.x), my(V.zero.y), V.zero.r * s, 0, TAU); ctx.stroke(); }
+  if (V.gas) { ctx.strokeStyle = '#a3e635'; ctx.beginPath(); ctx.arc(mx(V.gas.x), my(V.gas.y), V.gas.r * s, 0, TAU); ctx.stroke(); }
+  for (i = 0; i < V.pings.length; i++) {
+    var g = V.pings[i], r = (big ? 6 : 4.5) * pr, x = mx(g.x), y = my(g.y);
+    ctx.fillStyle = PINGS[g.k].col; ctx.beginPath(); ctx.moveTo(x, y - r); ctx.lineTo(x + r, y); ctx.lineTo(x, y + r); ctx.lineTo(x - r, y); ctx.closePath(); ctx.fill();
+  }
+  if (V.drop && !V.drop.gone && Math.sin(eng.animT / 150) > -0.4) { var d = (big ? 6 : 4.5) * pr; ctx.fillStyle = '#fde047'; ctx.fillRect(mx(V.drop.x) - d, my(V.drop.y) - d, d * 2, d * 2); }
+  if (V.boss && V.boss.f.alive) { ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(mx(V.boss.f.x), my(V.boss.f.y), (big ? 8 : 6) * pr, 0, TAU); ctx.fill(); }
+  ctx.restore();
+}
+
+// =====================================================================================
+// INTERFACE v4 — botões, roda de marcações/emotes, reunião, tutorial, heróis e ajustes
+// =====================================================================================
+function toggleWheel(force) {
+  var w = document.getElementById('iax-wheel');
+  if (w) { w.remove(); if (force !== true) return; }
+  if (force === false) return;
+  w = document.createElement('div'); w.id = 'iax-wheel'; w.className = 'iax4-wheel';
+  w.innerHTML = PINGS.map(function (P0, i) { return '<button type="button" data-p="' + i + '" style="--pc:' + P0.col + '"><i>' + P0.icon + '</i>' + esc(P0.txt) + '</button>'; }).join('') +
+    '<div class="iax4-emos">' + EMOTES.map(function (e, i) { return '<button type="button" data-e="' + i + '">' + esc(e) + '</button>'; }).join('') + '</div>';
+  w.addEventListener('pointerdown', function (e) {
+    var b = e.target.closest ? e.target.closest('button') : null;
+    e.preventDefault(); e.stopPropagation();
+    if (!b) { w.remove(); return; }
+    IAX.press(b.dataset.p !== undefined ? 'ping' + b.dataset.p : 'emo' + b.dataset.e);
+    w.remove();
+  });
+  document.body.appendChild(w);
+}
+function v4Input(eng, now) {
+  var p = eng.player, V = eng.iax.v4, k;
+  if (INPUT.ult && p.alive) castUlt(eng, p, now);
+  for (k = 0; k < 4; k++) if (INPUT['ping' + k]) {
+    var src = p.alive ? p : V.specF;
+    if (src) { var s = pingSpot(eng, src, k); addPing(eng, p, k, s.x, s.y); }
+    INPUT['ping' + k] = false;
+  }
+  for (k = 0; k < 6; k++) if (INPUT['emo' + k]) { if (p.alive) doEmote(eng, p, k); INPUT['emo' + k] = false; }
+  if (INPUT.meet) {
+    var I = V.imp;
+    if (I && !I.me && !I.done && p.alive) { if (now < I.meetAt) deny(eng, 'REUNIÃO EM ' + Math.ceil((I.meetAt - now) / 1000) + 's'); else callMeeting(eng, p, false, now); }
+  }
+  if (INPUT.stab) playerStab(eng, now);
+  if (INPUT.sab) playerSab(eng, now);
+  INPUT.ult = INPUT.meet = INPUT.stab = INPUT.sab = false;
+}
+function hideBtn(id, hide) { var b = document.getElementById(id); if (b) b.classList.toggle('is-hidden', !!hide); return b; }
+function cdTxt(id, ms) { var b = document.getElementById(id); if (!b) return; var t = ms > 0 ? Math.ceil(ms / 1000) + 's' : ''; var s = b.querySelector('em'); if (s && s.textContent !== t) s.textContent = t; b.classList.toggle('is-cd', ms > 0); }
+function syncV4(eng, now) {
+  var V = eng.iax.v4, p = eng.player;
+  if (Math.abs(now - (V.syncAt || 0)) < 120) return;
+  V.syncAt = now;
+  var H = heroOf(p), b = document.getElementById('iax-btn-ult');
+  if (b) {
+    var left = H ? Math.max(0, (p.v4cdUntil || 0) - now) : 0;
+    b.style.setProperty('--cd', (H ? (left / H.cd) * 360 : 360).toFixed(0) + 'deg');
+    b.style.setProperty('--hc', H ? H.color : '#64748b');
+    b.classList.toggle('is-ready', !!H && !left && p.alive);
+    var ico = document.getElementById('iax-ult-ico'), txt = left > 0 ? String(Math.ceil(left / 1000)) : H ? H.name.charAt(0) : '✦';
+    if (ico && ico.textContent !== txt) ico.textContent = txt;
+  }
+  var I = V.imp, crew = I && !I.me && !I.done, imp = I && I.me && !I.done;
+  hideBtn('iax-btn-meet', !crew); hideBtn('iax-btn-stab', !imp); hideBtn('iax-btn-sab', !imp);
+  if (crew) cdTxt('iax-btn-meet', I.meetAt - now);
+  if (imp) { cdTxt('iax-btn-stab', I.stabAt - now); cdTxt('iax-btn-sab', I.sabAt - now); }
+}
+function showMeeting(eng) {
+  var I = impOf(eng), M = I.meeting, p = eng.player;
+  var old = document.getElementById('iax-meet'); if (old) old.remove();
+  var root = document.createElement('div'); root.id = 'iax-meet'; root.className = 'iax-modal iax4-vote';
+  var canVote = M.cands.indexOf(p) >= 0 && p.alive;
+  var who = function (f) { return f.isPlayer ? 'VOCÊ' : f.name; };
+  M.left = canVote ? 20 : 6;
+  var draw = function () {
+    var res = M.phase === 'result';
+    root.innerHTML = '<div class="iax-sheet" role="dialog" aria-label="Reunião de emergência">' +
+      '<header><h2>' + (M.body ? '💀 CORPO ENCONTRADO' : '🚨 REUNIÃO DE EMERGÊNCIA') + '</h2>' + (res ? '' : '<b class="iax4-timer">' + M.left + 's</b>') + '</header>' +
+      '<p class="iax-sub">' + esc((M.caller ? who(M.caller) + (M.body ? ' reportou um corpo. ' : ' chamou a reunião. ') : '') +
+        (I.me ? 'Você é o impostor: jogue a culpa em alguém.' : canVote ? 'Quem é o impostor? Vote ou pule.' : 'Você está fora desta votação.')) + '</p>' +
+      '<div class="iax4-cands">' + M.cands.map(function (f) {
+        var clue = (I.clues[f.id] || []).slice(-1)[0] || 'Sem pistas', n = res ? M.tally[f.id] | 0 : 0, H = heroOf(f);
+        return '<button type="button" class="iax4-cand' + (M.myVote === f.id ? ' on' : '') + (res && M.out === f ? ' is-out' : '') + '" data-v="' + f.id + '"' + (res || !canVote || f.isPlayer ? ' disabled' : '') + '>' +
+          '<i style="background:' + f.color + '"></i><span><b>' + esc(who(f)) + (H ? ' <small>' + esc(H.role) + '</small>' : '') + '</b><em>' + esc(clue) + '</em></span>' +
+          (res ? '<strong>' + (n ? '🗳️ ' + n : '—') + '</strong>' : '') + '</button>';
+      }).join('') + '</div>' +
+      (res ? '<p class="iax4-tally">Pularam o voto: ' + M.skip + '</p>' : '<button type="button" class="iax-go" data-v="skip"' + (canVote ? '' : ' disabled') + '>PULAR VOTO</button>') +
+      '</div>';
+  };
+  var finish = function (vote) {
+    if (M.phase !== 'vote') return;
+    M.myVote = vote; M.phase = 'result';
+    clearInterval(M.iv);
+    resolveMeeting(eng); sfx(eng, 'vote'); draw();
+    M.to = setTimeout(function () {
+      var out = M.out, imp = out && out === I.traitor;
+      root.innerHTML = '<div class="iax4-eject">' + (out ? '<div class="iax4-astro" style="--c:' + out.color + '"></div>' : '') +
+        '<h2>' + esc(out ? who(out) + (out.isPlayer ? ' FOI EJETADO.' : ' foi ejetado.') : 'Ninguém foi ejetado.') + '</h2>' +
+        '<p>' + esc(out ? (imp ? (out.isPlayer ? 'Você era o impostor.' : out.name + ' ERA o impostor!') : (out.isPlayer ? 'Você não era o impostor.' : out.name + ' não era o impostor.')) : M.skip ? 'A maioria pulou o voto.' : 'Empate na votação.') + '</p></div>';
+      sfx(eng, out ? 'eject' : 'vote');
+      if (out) say(out.isPlayer ? (imp ? 'Você foi descoberto!' : 'Você foi ejetado.') : out.name + (imp ? ' era o impostor!' : ' não era o impostor.'), true);
+      M.to = setTimeout(function () { endMeeting(eng); }, 2700);
+    }, 2300);
+  };
+  M.iv = setInterval(function () {
+    if (IAX.eng !== eng || eng.destroyed) { endMeeting(eng); return; }
+    eng.paused = true;
+    M.left--;
+    var t = root.querySelector('.iax4-timer'); if (t) t.textContent = Math.max(0, M.left) + 's';
+    if (M.left <= 0) finish(M.myVote);
+  }, 1000);
+  root.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('button') : null;
+    if (!b || b.disabled || M.phase !== 'vote') return;
+    if (b.dataset.v === 'skip') { finish('skip'); return; }
+    var f = M.cands.filter(function (g) { return String(g.id) === b.dataset.v; })[0];
+    if (f) finish(f.id);
+  });
+  draw();
+  document.body.appendChild(root);
+}
+function endMeeting(eng) {
+  var I = impOf(eng);
+  var el = document.getElementById('iax-meet'); if (el) el.remove();
+  if (!I || !I.meeting) return;
+  var M = I.meeting;
+  clearInterval(M.iv); clearTimeout(M.to);
+  I.meeting = null;
+  if (IAX.eng !== eng || eng.destroyed) return;
+  I.bodies.length = 0; I.callAt = 0; I.meetAt = eng.time + 25000;
+  eng.paused = false;
+  if (M.out) ejectFighter(eng, M.out, eng.time);
+}
+function tutCard(eng) {
+  var T = eng.iax.v4.tut, el = document.getElementById('iax-tut');
+  if (!T || T.done) { if (el) el.remove(); return; }
+  if (!el) {
+    el = document.createElement('div'); el.id = 'iax-tut'; el.className = 'iax4-tut';
+    el.addEventListener('click', function (e) { var b = e.target.closest ? e.target.closest('button') : null; if (b) skipTut(); });
+    document.body.appendChild(el);
+  }
+  el.innerHTML = '<small>TUTORIAL · ' + (T.step + 1) + '/' + TUT.length + '</small><b>' + esc(TUT[T.step]) + '</b><i>' +
+    TUT.map(function (s, i) { return '<u class="' + (i < T.step ? 'ok' : i === T.step ? 'on' : '') + '"></u>'; }).join('') + '</i><button type="button">Pular</button>';
+}
+function skipTut() {
+  var eng = IAX.eng, V = eng && eng.iax && eng.iax.v4;
+  if (!V || !V.tut) return;
+  V.tut.done = true; V.tut.d.frozenUntil = 0;
+  W4().tutDone = true; IAX.saveWallet();
+  tutCard(eng);
+}
+IAX.startTutorial = function () {
+  var N = netObj();
+  if (isMP() || document.documentElement.dataset.net === 'mp') { toast('O tutorial é offline: saia da sala online primeiro.'); return; }
+  if (!N || !N.m) return;
+  var m = document.getElementById('iax-modal'); if (m) m.remove();
+  CFG_BAK = JSON.parse(JSON.stringify(IAX.cfg));
+  IAX.cfg.format = '1v1'; IAX.cfg.kit = false; IAX.cfg.diff = 'normal';
+  V4NEXT = 'tut';
+  N.m.play();
+};
+function showTutDone(first) {
+  if (document.getElementById('iax-modal')) return;
+  var root = document.createElement('div'); root.id = 'iax-modal'; root.className = 'iax-modal';
+  root.innerHTML = '<div class="iax-sheet" role="dialog" aria-label="Tutorial concluído"><header><h2>🎓 TUTORIAL CONCLUÍDO!</h2><button type="button" class="iax-x" data-a="close" aria-label="Fechar">✕</button></header>' +
+    '<p class="iax-sub">' + (first ? 'Você ganhou <b>150 moedas</b> e o herói <b>SOMBRA</b> (fica invisível por 7 s)!' : 'Mandou bem!') + '</p>' +
+    '<p class="iax-sub">Agora chame seu par para o <b>Modo Casal</b>: ele + ela contra outros casais.</p>' +
+    '<button type="button" class="iax-go iax4-wa" data-a="invite">💌 CONVIDAR NO WHATSAPP</button>' +
+    '<button type="button" class="iax-go" data-a="train">▶ TREINO vs CPU</button></div>';
+  root.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('button') : null, a = b && b.dataset.a;
+    if (e.target === root || a === 'close') root.remove();
+    else if (a === 'invite') invite();
+    else if (a === 'train') { root.remove(); IAX.openTraining(); }
+  });
+  document.body.appendChild(root);
+}
+function invite() {
+  var url = location.protocol === 'file:' ? '' : location.origin + location.pathname;
+  var txt = 'Bora jogar IMPOSTOR ARENA comigo? No Modo Casal é eu + você contra outros casais! ' + url;
+  try { if (navigator.share) { navigator.share({ title: 'Impostor Arena', text: txt }).catch(function () {}); return; } } catch (e) {}
+  window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+}
+function installApp() {
+  if (APP.prompt) { var e = APP.prompt; APP.prompt = null; try { e.prompt(); } catch (x) {} return; }
+  if (window.matchMedia && matchMedia('(display-mode: standalone)').matches) { toast('O jogo já está instalado como app.'); return; }
+  toast(/iphone|ipad|ipod/i.test(navigator.userAgent) ? 'No iPhone: Compartilhar → "Adicionar à Tela de Início".' : 'No Chrome: menu ⋮ → "Instalar app" ou "Adicionar à tela inicial".');
+}
+function heroGridHtml() {
+  var v = W4();
+  return '<div class="iax-grid4 iax4-heroes">' + HERO_IDS.map(function (k) {
+    var H = HEROES[k], own = !!v.heroes[k];
+    return '<button type="button" data-h="' + k + '" class="iax-opt iax4-hero' + (v.hero === k ? ' on' : '') + (own ? '' : ' is-locked') + '" style="--hc:' + H.color + '">' +
+      '<i>' + H.name.charAt(0) + '</i><b>' + H.name + '</b><small>' + esc(H.role) + '</small><em>' + (own ? esc(H.ultTxt) : coinsHtml(H.price)) + '</em></button>';
+  }).join('') + '</div>';
+}
+function heroDescHtml() {
+  var H = HEROES[W4().hero];
+  return '<p class="iax4-hdesc" style="--hc:' + H.color + '"><b>' + H.name + ' · ' + esc(H.role) + '</b> Passiva: ' + esc(H.pas) + ' · ULTI: ' + esc(H.ultTxt) + '</p>';
+}
+function heroClick(k) {
+  var v = W4(), H = HEROES[k], w = IAX.wallet;
+  if (!H) return;
+  if (!v.heroes[k]) {
+    if (w.coins < H.price) { toast('Faltam ' + (H.price - w.coins) + ' moedas para ' + H.name + '.'); return; }
+    w.coins -= H.price; v.heroes[k] = 1; toast(H.name + ' desbloqueado!');
+  }
+  v.hero = k; IAX.saveWallet();
+}
+// secção extra do Treino: papel no Modo Impostor, descrição do chefão e herói
+function v4TrainHtml(cfg) {
+  var h = '';
+  if (cfg.format === 'imp') h += '<h3>Seu papel</h3><div class="iax-grid3">' + [['rand', 'ALEATÓRIO', '30% de chance de ser o impostor'], ['crew', 'TRIPULANTE', 'Descubra o traidor'], ['imp', 'IMPOSTOR', 'Apunhale e sabote']].map(function (o) {
+    return '<button type="button" data-r="' + o[0] + '" class="iax-opt' + ((cfg.impRole || 'rand') === o[0] ? ' on' : '') + '"><b>' + o[1] + '</b><small>' + o[2] + '</small></button>';
+  }).join('') + '</div><p class="iax-sub">Um traidor secreto na sua equipe apunhala, sabota (apagão, portas, gás) e se esconde. Corpos encontrados chamam reunião e votação.</p>';
+  if (cfg.format === 'boss') h += '<p class="iax-sub">Você + 3 aliados contra o TITÃ: pancadas no chão, ondas de choque e chuva de meteoros. A cada vitória ele volta mais forte.</p>';
+  return h + '<h3>Seu herói</h3>' + heroGridHtml() + heroDescHtml();
+}
+// secção extra do Personalizar: heróis e ajustes (gráficos, narrador, app, convite, tutorial)
+function v4CustHtml() {
+  var v = W4(), G = { auto: ['AUTO', 'Leve se o celular travar'], high: ['ALTO', 'Todos os efeitos'], lite: ['LEVE', 'Mais FPS, menos efeitos'] };
+  return '<h3>Heróis</h3>' + heroGridHtml() + heroDescHtml() +
+    '<h3>Gráficos</h3><div class="iax-grid3">' + Object.keys(G).map(function (k) { return '<button type="button" data-g="' + k + '" class="iax-opt' + (v.gfx === k ? ' on' : '') + '"><b>' + G[k][0] + '</b><small>' + G[k][1] + '</small></button>'; }).join('') + '</div>' +
+    '<button type="button" data-n="1" class="iax-toggle' + (v.narr ? ' on' : '') + '"><i></i><span><b>Narrador</b><small>"Primeiro abate!", "Casal eliminado!", "Último sobrevivente!"</small></span></button>' +
+    '<div class="iax-grid3"><button type="button" class="iax-opt" data-x="install"><b>📲 INSTALAR</b><small>Ícone na tela inicial</small></button>' +
+    '<button type="button" class="iax-opt" data-x="invite"><b>💌 CONVIDAR</b><small>Chame seu par</small></button>' +
+    '<button type="button" class="iax-opt" data-x="tut"><b>🎓 TUTORIAL</b><small>1 minuto</small></button></div>';
+}
+// devolve true quando o modal deve fechar
+function v4CustClick(d) {
+  var v = W4();
+  if (d.h) heroClick(d.h);
+  else if (d.g) { v.gfx = d.g; IAX.saveWallet(); applyGfx(true); }
+  else if (d.n) { v.narr = !v.narr; IAX.saveWallet(); if (v.narr) say('Narrador ligado!', true); }
+  else if (d.x === 'install') installApp();
+  else if (d.x === 'invite') invite();
+  else if (d.x === 'tut') { setTimeout(IAX.startTutorial, 0); return true; }
+  return false;
+}
+
+// ---------- app: instalar, ecrã sempre ligado, modo leve automático
+var WL = null, DPR0 = null, PERF = { t: 0, n: 0, sum: 0, bad: 0 };
+function wakeOn() {
+  try {
+    if (WL || !navigator.wakeLock || document.visibilityState !== 'visible') return;
+    navigator.wakeLock.request('screen').then(function (l) { WL = l; l.addEventListener('release', function () { WL = null; }); }).catch(function () {});
+  } catch (e) {}
+}
+function wakeOff() { try { if (WL) WL.release(); } catch (e) {} WL = null; }
+function setLite(on, auto) {
+  IAX.lite = !!on;
+  try {
+    if (on) {
+      if (!DPR0) DPR0 = Object.getOwnPropertyDescriptor(window, 'devicePixelRatio') || { none: true };
+      Object.defineProperty(window, 'devicePixelRatio', { configurable: true, get: function () { return 1; } });
+    } else if (DPR0) {
+      if (DPR0.none) delete window.devicePixelRatio; else Object.defineProperty(window, 'devicePixelRatio', DPR0);
+      DPR0 = null;
+    }
+  } catch (e) {}
+  var eng = IAX.eng;
+  if (eng && eng.iax && on) { eng.iax.rain = null; if (eng.iax.clouds) eng.iax.clouds.length = Math.min(3, eng.iax.clouds.length); }
+  try { window.dispatchEvent(new Event('resize')); if (eng && eng.resize) eng.resize(); } catch (e) {}
+  if (auto) toast('Modo leve ligado para o jogo ficar fluido (Personalizar → Gráficos).');
+}
+function applyGfx(user) {
+  var g = W4().gfx;
+  if (g === 'lite' && !IAX.lite) setLite(true, false);
+  else if (g !== 'lite' && IAX.lite && (g === 'high' || user)) setLite(false, false);
+  PERF.t = PERF.n = PERF.sum = PERF.bad = 0;
+}
+function perfTick() {
+  if (IAX.lite || W4().gfx !== 'auto') return;
+  var t = performance.now();
+  if (PERF.t && t - PERF.t < 250) { PERF.sum += t - PERF.t; PERF.n++; }
+  PERF.t = t;
+  if (PERF.n < 150) return;
+  var avg = PERF.sum / PERF.n; PERF.sum = PERF.n = 0;
+  if (avg > 21) { if (++PERF.bad >= 2) setLite(true, true); } else PERF.bad = 0; // < ~48 FPS em duas janelas seguidas
+}
+
+// ---------- ligação ao motor
+function v4Match(eng) {
+  var X = eng.iax, p = eng.player, now = eng.time, tut = V4NEXT === 'tut' && !X.mp;
+  V4NEXT = null;
+  if (CFG_BAK) { IAX.cfg = CFG_BAK; CFG_BAK = null; }
+  var V = (X.v4 = { pings: [], feed: [], said: {}, dark: 0, blackoutUntil: 0, wave: X.dir ? X.dir.wave : 0, evAt: now + 42000 + Math.random() * 15000, imp: null, boss: null, tut: null, drop: null, zero: null, gas: null, shower: null });
+  V.night = X.tod === 'noite' ? 1 : X.tod === 'tempestade' ? 0.6 : 0;
+  eng.visK = 1;
+  p.v4hero = W4().hero;
+  eng.fighters.forEach(function (f) {
+    if (!f.isPlayer && !f.isClone && !X.mp) f.v4hero = HERO_IDS[(Math.random() * HERO_IDS.length) | 0];
+    applyHero(eng, f, true);
+    f.v4cdUntil = now + (f.isPlayer ? 4000 : 8000 + Math.random() * 6000);
+  });
+  var vis = eng.vision;
+  if (vis && !vis.v4) { // a visão encolhe no escuro e segue o colega quando estás caído
+    var up = vis.update; vis.v4 = true;
+    vis.update = function (x, y, r, occ, b) {
+      var W = eng.iax && eng.iax.v4;
+      if (W) { var s = W.specF; if (s && s.alive && !eng.player.alive) { x = s.x; y = s.y; } r *= eng.visK || 1; }
+      return up.call(this, x, y, r, occ, b);
+    };
+  }
+  if (!X.mp && X.format === 'imp') { X.dir = null; setupImpostor(eng, now); }
+  if (!X.mp && X.format === 'boss') setupBoss(eng, now);
+  if (tut) { X.dir = null; setupTut(eng, now); }
+  try { var a = eng.audio; if (a && a.ctx && a.master && !a.v4fx) v4Chain(a); } catch (e) {}
+  applyGfx(false);
+}
+function v4Update(eng, dtMs) {
+  var X = eng.iax, V = X && X.v4;
+  if (!V || eng.destroyed) return;
+  var dt = Math.min(0.05, dtMs / 1000), now = eng.time;
+  perfTick();
+  v4Input(eng, now);
+  updateHeroes(eng, dt, now);
+  updateLight(eng, dt, now);
+  updateSpec(eng, now);
+  updatePings(eng, now);
+  updateSteps(eng, now);
+  narrUpdate(eng, now);
+  if (!X.mp) { updateEvents(eng, dt, now); updateBoss(eng, dt, now); impUpdate(eng, dt, now); if (V.tut) tutUpdate(eng, now); }
+  if (IAX.lite && eng.particles.length > 110) eng.particles.splice(0, eng.particles.length - 110);
+  syncV4(eng, now);
+}
+function onKillV4(eng, t, killerId) {
+  var V = eng.iax.v4, p = eng.player, now = eng.time;
+  if (!V.said.first) { V.said.first = true; say(killerId === p.id ? 'Primeiro abate! É seu!' : 'Primeiro abate!'); return; }
+  if (killerId === p.id && t !== p) {
+    V.multi = now - (V.multiAt || -1e9) < 3500 ? (V.multi | 0) + 1 : 1; V.multiAt = now;
+    if (V.multi >= 2) say(V.multi === 2 ? 'Abate duplo!' : V.multi === 3 ? 'Abate triplo!' : 'Massacre!', true);
+  }
+}
+function v4Destroy(eng) {
+  var X = eng.iax, V = X && X.v4;
+  ['iax-wheel', 'iax-tut'].forEach(function (id) { var el = document.getElementById(id); if (el) el.remove(); });
+  if (!V) return;
+  if (V.imp && V.imp.meeting) endMeeting(eng);
+  X.walls.forEach(function (w) { if (w.crate) { var i = B.obstacles.indexOf(w.ob); if (i >= 0) B.obstacles.splice(i, 1); } });
+  if (V.tut && V.tut.won) { var first = V.tut.first; setTimeout(function () { showTutDone(first); }, 900); }
+}
+function installV4() {
+  var P = B.Engine.prototype, o4 = {};
+  ['buildMatch', 'start', 'destroy', 'update', 'kill', 'cameraStep', 'drawClouds', 'drawBullets', 'drawEdgeArrows', 'drawMinimap'].forEach(function (k) { o4[k] = P[k]; });
+  P.buildMatch = function () { o4.buildMatch.call(this); try { v4Match(this); } catch (e) { console.error('[IAX v4] partida', e); } };
+  P.start = function () { wakeOn(); return o4.start.apply(this, arguments); };
+  P.destroy = function () { try { v4Destroy(this); } catch (e) { console.error('[IAX v4] fim', e); } wakeOff(); return o4.destroy.apply(this, arguments); };
+  P.update = function (t) { o4.update.call(this, t); if (this.iax && this.iax.v4 && !this.destroyed) v4Update(this, t); };
+  P.kill = function (t, a, l) {
+    var was = !!(t && t.alive), r = o4.kill.apply(this, arguments);
+    if (was && !t.alive && !t.isClone && this.iax && this.iax.v4) { try { onKillV4(this, t, a); } catch (e) {} }
+    return r;
+  };
+  P.cameraStep = function (dt) {
+    var sx = this.specX, cx = this.camX, cy = this.camY;
+    o4.cameraStep.call(this, dt);
+    // espectador: a câmara original puxaria para o corpo do jogador; aqui segue só o colega
+    if (sx != null && this.iax && this.iax.v4) { var k = Math.min(1, dt * 6); this.camX = lerp(cx, sx, k); this.camY = lerp(cy, this.specY, k); }
+  };
+  P.drawClouds = function (now, anim, vis) { if (this.iax && this.iax.v4) drawGroundV4(this, now, anim); return o4.drawClouds.call(this, now, anim, vis); };
+  P.drawBullets = function (vis) { o4.drawBullets.call(this, vis); if (this.iax && this.iax.v4) drawWorldV4(this, this.time, this.animT); };
+  P.drawEdgeArrows = function () {
+    var V = this.iax && this.iax.v4;
+    if (V) drawDarkV4(this);
+    var r = o4.drawEdgeArrows.apply(this, arguments);
+    if (V) drawScreenV4(this);
+    return r;
+  };
+  P.drawMinimap = function (cv, big) { o4.drawMinimap.call(this, cv, big); if (this.iax && this.iax.v4) drawMiniV4(this, cv, big); };
+  installAudioV4();
+  // botões no ecrã tátil: ULTI, marcar/emotes e (Modo Impostor) reunião, faca e sabotagem
+  var c0 = IAX.ui.controls;
+  IAX.ui.controls = function (R) {
+    var down = function (k) { return function (e) { e.preventDefault(); e.stopPropagation(); IAX.press(k); }; };
+    var btn = function (id, cls, label, icon, cap, k) {
+      return R.jsxs('button', { type: 'button', id: id, className: 'ia-act ' + cls, 'aria-label': label, onPointerDown: down(k), children: [R.jsx('b', { children: icon }), R.jsx('em', {}), R.jsx('span', { className: 'iax-cap', children: cap })] });
+    };
+    return R.jsxs(R.Fragment, {
+      children: [
+        c0(R),
+        R.jsxs('button', { type: 'button', id: 'iax-btn-ult', className: 'ia-act iax4-ult', 'aria-label': 'ULTI do herói', onPointerDown: down('ult'), children: [R.jsx('b', { id: 'iax-ult-ico', children: '✦' }), R.jsx('span', { className: 'iax-cap', children: 'ULTI' })] }),
+        R.jsx('button', { type: 'button', id: 'iax-btn-ping', className: 'ia-act iax4-ping', 'aria-label': 'Marcar e emotes', onPointerDown: function (e) { e.preventDefault(); e.stopPropagation(); toggleWheel(); }, children: '📍' }),
+        btn('iax-btn-meet', 'iax4-imp iax4-meet is-hidden', 'Reunião de emergência', '🚨', 'REUNIÃO', 'meet'),
+        btn('iax-btn-stab', 'iax4-imp iax4-stab is-hidden', 'Apunhalar', '🔪', 'FACA', 'stab'),
+        btn('iax-btn-sab', 'iax4-imp iax4-sab is-hidden', 'Sabotar', '⚡', 'SABOTAR', 'sab'),
+      ],
+    });
+  };
+  var m0 = IAX.ui.menu;
+  IAX.ui.menu = function (R) {
+    return R.jsxs(R.Fragment, {
+      children: [m0(R), R.jsxs('button', { type: 'button', className: 'ia-key ia-cust ia-tut' + (W4().tutDone ? '' : ' is-new'), onClick: function () { IAX.startTutorial(); }, children: [R.jsx('span', { 'aria-hidden': 'true', children: '🎓' }), 'Como jogar · 1 min'] })],
+    });
+  };
+  // teclado: R ULTI · T/Y/U marcar · 4–9 emotes · N reunião · K faca · J sabotar
+  window.addEventListener('keydown', function (e) {
+    var eng = IAX.eng, t = e.target;
+    if (!eng || eng.paused || e.repeat || (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA'))) return;
+    var m = { KeyR: 'ult', KeyT: 'ping0', KeyY: 'ping1', KeyU: 'ping2', KeyN: 'meet', KeyK: 'stab', KeyJ: 'sab' }[e.code];
+    if (!m && /^Digit[4-9]$/.test(e.code)) m = 'emo' + (+e.code.slice(5) - 4);
+    if (m) IAX.press(m);
+  });
+  // a voz do narrador precisa de um primeiro toque (iOS)
+  document.addEventListener('pointerdown', function () { try { if (window.speechSynthesis) { var u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); } } catch (e) {} }, { once: true, capture: true });
+  document.addEventListener('visibilitychange', function () { if (IAX.eng && document.visibilityState === 'visible') wakeOn(); });
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); APP.prompt = e; });
+  try { if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) navigator.serviceWorker.register('sw.js').catch(function () {}); } catch (e) {}
+  if (W4().gfx === 'lite') setLite(true, false);
+}
+// ganchos para testes automáticos (não alteram o jogo)
+IAX.v4dbg = { stabKill: stabKill, startEvent: startEvent, callMeeting: callMeeting, endMeeting: endMeeting, sabotage: sabotage, setLite: setLite, castUlt: castUlt };
+
 IAX.boot = function (b) {
   try {
     B = b; fn = b.fn; WEAPONS = b.weapons; WORLD = b.world; BORDER = b.W || 48;
@@ -7160,6 +8763,7 @@ IAX.boot = function (b) {
     installAudio();
     installAudioV3();
     installView();
+    installV4();
     IAX.ready = true;
   } catch (e) {
     console.error('[IAX] falha no arranque', e);
